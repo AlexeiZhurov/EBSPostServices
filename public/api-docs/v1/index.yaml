@@ -1,42 +1,64 @@
 openapi: 3.0.3
 info:
-  title: Ensi Backend Skeleton (Replace me)
+  title: API ServicesPost
   contact:
     name: API Support
     url: https://ensi.tech/contacts
     email: mail@greensight.ru
   version: 1.0.0
-  description: Ensi Backend Skeleton Description (Replace me)
+  description: APi Post 
 servers:
   - url: /api/v1
 tags:
-  - name: examples
-    description: Тэг-пример
+  - name: posts
+    description: Тэг для ресурса posts
 paths:
-  /examples/{id}:
+  /posts:
     get:
-      tags:
-        - examples
-      operationId: getExample
-      x-lg-handler: 'App\Http\ApiV1\Controllers\FoosController@get'
-      x-lg-route-name: 'getExample'
+      tags: 
+        - posts
+      operationId: getPosts
+      x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@index'
+      x-lg-route-name: 'getPosts'
       x-lg-skip-request-generation: true
-      summary: Получение объекта типа Example
-      description: Получение объекта типа Example
-      parameters:
-        - $ref: '#/components/parameters/PathId'
-        - $ref: '#/components/parameters/QueryInclude'
+      summary: Получени массив постов
+      description: Данный метод позволит получить массив постов с пагинацией
       responses:
-        #"200":
-          #description: Успешный ответ
-          # content:
-          #  application/json:
-          #    schema:
-          #      $ref: './customers.yaml#/CustomerResponse'
-        "404":
-          $ref: '#/components/responses/NotFound'
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts.yaml#/PostResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
         "500":
           $ref: '#/components/responses/ServerError'
+
+  # /examples/{id}:
+  #   get:
+  #     tags:
+  #       - examples
+  #     operationId: getExample
+  #     x-lg-handler: 'App\Http\ApiV1\Controllers\FoosController@get'
+  #     x-lg-route-name: 'getExample'
+  #     x-lg-skip-request-generation: true
+  #     summary: Получение объекта типа Example
+  #     description: Получение объекта типа Example
+  #     parameters:
+  #       - $ref: '#/components/parameters/PathId'
+  #       - $ref: '#/components/parameters/QueryInclude'
+  #     responses:
+  #       "200":
+  #         description: Успешный ответ
+  #         content:
+  #          application/json:
+  #            schema:
+  #              $ref: './posts.yaml#/PostsResponse'
+  #       "404":
+  #         $ref: '#/components/responses/NotFound'
+  #       "500":
+  #         $ref: '#/components/responses/ServerError'
 components:
   parameters:
     QueryInclude:
