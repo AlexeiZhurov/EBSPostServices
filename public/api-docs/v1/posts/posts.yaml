@@ -34,7 +34,7 @@ PostFillableProperties:
     created_at:
       type: string 
       format: date-time
-      example: 020-01-01T15:47:21.000000Z
+      example: 2020-01-01T15:47:21.000000Z
 #Обезательные свойства при запросе
 PostRequiredRequestProperties:
   type: object
@@ -66,8 +66,12 @@ Post:
     - $ref: '#/PostReadonlyProperties'
     - $ref: '#/PostFillableProperties'
     - $ref: '#/PostRequiredResponseProperties'
-
-
+#Запрос на создание поста
+CreatePostRequest:
+  allOf:
+    - $ref: '#/PostFillableProperties'
+    - $ref: '#/PostRequiredRequestProperties'
+#Описание файла
 PostFile:
   type: object
   properties:

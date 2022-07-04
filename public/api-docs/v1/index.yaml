@@ -34,6 +34,93 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "500":
           $ref: '#/components/responses/ServerError'
+    post:
+      tags: 
+        - posts
+      operationId: createPosts
+      x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@store'
+      x-lg-route-name: 'getPosts'
+      x-lg-skip-request-generation: true
+      summary: Создание поста
+      description: Данный метод позволит создать пост
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts.yaml#/CreatePostRequest'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError'
+  /posts/{id}:
+    get:
+      tags: 
+        - posts
+      operationId: getPost
+      x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@show'
+      x-lg-route-name: 'getPosts'
+      summary: Получение одного поста
+      description: Данный метод позволить получить один пост по его id
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+        - $ref: '#/components/parameters/QueryInclude'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts.yaml#/PostResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags: 
+        - posts
+      operationId: patchPosts
+      x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@update'
+      x-lg-route-name: 'pathcPosts'
+      x-lg-skip-request-generation: true
+      summary: Редактирование поста
+      description: Данный метод позволит отредактировать пост
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts.yaml#/CreatePostRequest'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags: 
+        - posts
+      operationId: deletePosts
+      x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@destroy'
+      x-lg-route-name: 'deletePosts'
+      summary: Удаление одного поста
+      description: Данный метод позволить удалить один пост по его id
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError'
+    
 
   # /examples/{id}:
   #   get:
