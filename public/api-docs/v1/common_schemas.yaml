@@ -103,7 +103,6 @@ RequestBodyOffsetPagination:
     type:
       $ref: '#/PaginationTypeEnum'
       example: "offset"
-
 ResponseBodyPagination:
   oneOf:
     - $ref: '#/ResponseBodyCursorPagination'

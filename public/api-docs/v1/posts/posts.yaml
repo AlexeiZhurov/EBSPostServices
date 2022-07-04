@@ -128,7 +128,7 @@ RequestPostSort:
   type: array
   items:
     type: string
-    example: desc or asc
+    example: "desc or asc"
 #описание подлючаемых сущностей
 RequestPostInclude:
   type: array
