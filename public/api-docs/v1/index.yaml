@@ -29,7 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/PostResponse'
+                $ref: './posts/posts.yaml#/PostsResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/CreatePostRequest'
+                $ref: './posts/posts.yaml#/PatchPostRequest'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -120,7 +120,28 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "500":
           $ref: '#/components/responses/ServerError'
-    
+  /customers:search:
+    post:
+      tags:
+        - posts
+      operationId: searchPosts
+      summary: Поиск постов
+      description: Метод позволяет проводит поиск по постам
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './posts/posts.yaml#/SearchPostsRequest'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts.yaml#/SearchPostsResponse'
+        "500":
+          $ref: '#/components/responses/ServerError' 
 
   # /examples/{id}:
   #   get:

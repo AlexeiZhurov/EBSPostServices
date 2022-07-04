@@ -60,6 +60,22 @@ PostRequiredResponseProperties:
     - text
     - tags
     - created_at
+#Описание ответа с пагинцией
+PostsResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Post'
+    meta:
+      type: object
+      properties: 
+        pagination: 
+          $ref: '../common_schemas.yaml#/ResponseBodyPagination'
+  required:
+      - data
+      - meta
 #Что собой предстовляет сущность пост
 Post:
   allOf:
@@ -68,6 +84,10 @@ Post:
     - $ref: '#/PostRequiredResponseProperties'
 #Запрос на создание поста
 CreatePostRequest:
+  allOf:
+    - $ref: '#/PostFillableProperties'
+    - $ref: '#/PostRequiredRequestProperties'
+PatchPostRequest:
   allOf:
     - $ref: '#/PostFillableProperties'
     - $ref: '#/PostRequiredRequestProperties'
@@ -87,3 +107,59 @@ PostFile:
       type: string
       description: Ссылка для скачивания файла
       example: "https://es-public.project.ru/domain/attachments/48/2f/image.png"
+#Описание фильтров для поиска
+SearchPostsFilter:
+  type: object
+  properties:
+    tags_like:
+      type: array
+      example: "[php,js]"
+    voice:
+      type: string
+      example: 5
+    voice_gt:
+      type: string
+      example: 2
+    voice_lt:
+      type: string
+      example: 10
+#Описание сортировки
+RequestPostSort:
+  type: array
+  items:
+    type: string
+    example: desc or asc
+#описание подлючаемых сущностей
+RequestPostInclude:
+  type: array
+  items:
+    type: string
+    example: 'voices_count'
+#Описание запроса на поиск
+SearchPostsRequest:
+  type: object
+  properties: 
+    sort:
+      $ref: '#/RequestPostSort'
+    filter: 
+      $ref: '#/SearchPostsFilter'
+    include:
+      $ref: '#/RequestPostInclude'
+    pagination:
+      $ref: '../common_schemas.yaml#/RequestBodyPagination'
+#Описание результата поиска
+SearchPostsResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Post'
+    meta:
+      type: object
+      properties: 
+        pagination: 
+          $ref: '../common_schemas.yaml#/ResponseBodyPagination'
+  required:
+      - data
+      - meta
