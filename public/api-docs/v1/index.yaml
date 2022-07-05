@@ -147,7 +147,7 @@ paths:
       tags: 
         - posts
       operationId: getPostVoices
-      x-lg-handler: 'App\Http\ApiV1\Controllers\VoiсesController@index'
+      x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@index'
       x-lg-route-name: 'getPostsVoices'
       summary: Получение получение оценок поста
       description: Метод позволяет получить абсолютно все оценки поста
@@ -189,7 +189,7 @@ paths:
       tags: 
         - posts
       operationId: deletePostVoices
-      x-lg-handler: 'App\Http\ApiV1\Controllers\VoiсesController@destroyAll'
+      x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@destroyAll'
       x-lg-route-name: 'deletePostsVoices'
       summary: Удаление оценок поста
       description: Метод позволяет удалить абсолютно все оценки поста
