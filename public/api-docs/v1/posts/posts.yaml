@@ -6,12 +6,6 @@ PostReadonlyProperties:
       type: integer
       description: Идентификатор поста
       example: 1
-    preview:
-      nullable: true
-      allOf:
-        - type: object
-        - $ref: '#/PostFile'
-      description: Превью поста
 #Это поля которы содержаться в табличке Post
 PostFillableProperties:
   type: object
@@ -20,6 +14,11 @@ PostFillableProperties:
       type: string
       description: Название поста
       example: Я очень интересная статья
+    preview:
+      # nullable: true
+      type: string
+      description: Превью поста
+      example: "https://es-public.project.ru/domain/attachments/48/2f/image.png"
     text: 
       type: string
       description: Текст статьи 

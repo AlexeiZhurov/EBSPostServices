@@ -6,6 +6,8 @@ services:
       volumes:
           - ./:/usr/share/nginx/www
       working_dir: /usr/share/nginx/www
+      depends_on:
+        - postgres
 
   nginx:
       build: ./docker/nginx
@@ -17,15 +19,16 @@ services:
       ports:
           - 80:80
  
-  db:
+  postgres:
     image: postgres
     container_name: postgres-db
     restart: always
+    ports:
+          - 5432:5432
     environment:
       POSTGRES_DB: ebs
       POSTGRES_USER: ebs
       POSTGRES_PASSWORD: ebs
-
   adminer:
     container_name: postgres-adminer
     image: adminer
