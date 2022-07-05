@@ -73,3 +73,45 @@ PatchVoiceRequest:
 VoicesCount:
   type: integer
   example: 76
+
+#Описание фильтров для поиска
+SearchVoicesFilter:
+  type: object
+  properties:
+    user_id:
+      type: integer
+      example: 10
+    post_id:
+      type: integer
+#Описание сортировки
+RequestVoicesSort:
+  type: array
+  items:
+    type: string
+    example: "desc or asc"
+#Описание запроса на поиск
+SearchVoicesRequest:
+  type: object
+  properties: 
+    sort:
+      $ref: '#/RequestVoicesSort'
+    filter: 
+      $ref: '#/SearchVoicesFilter'
+    pagination:
+      $ref: '../common_schemas.yaml#/RequestBodyPagination'
+#Описание результата поиска
+SearchVoicesResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/Voices'
+    meta:
+      type: object
+      properties: 
+        pagination: 
+          $ref: '../common_schemas.yaml#/ResponseBodyPagination'
+  required:
+      - data
+      - meta

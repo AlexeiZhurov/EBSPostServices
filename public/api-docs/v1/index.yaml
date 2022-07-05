@@ -251,6 +251,32 @@ paths:
           $ref: '#/components/responses/NotFound'
         "500":
           $ref: '#/components/responses/ServerError'
+  /posts/voices:search:
+    post:
+      tags:
+        - posts
+      operationId: searchPostVoices
+      x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@search'
+      x-lg-route-name: 'searchPost'
+      summary: Поиск голосов поста
+      description: Метод позволяет проводит поиск голосов
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './posts/posts_voices.yaml#/SearchVoicesRequest'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                $ref: './posts/posts_voices.yaml#/SearchVoicesResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError' 
   # /examples/{id}:
   #   get:
   #     tags:
