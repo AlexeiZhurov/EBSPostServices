@@ -53,5 +53,6 @@ class {$name}Action{
         $fp = fopen($path."/{$name}Action.php", "w");
 	    fwrite($fp, $this->getFileExample($name,$apiversion));
 	    fclose($fp);
+        $this->info('Действие создано в '.$path);
     }
 }

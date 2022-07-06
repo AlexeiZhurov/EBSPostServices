@@ -20,7 +20,7 @@ services:
           - 80:80
  
   postgres:
-    image: postgres
+    image: postgres:10.1
     container_name: postgres-db
     restart: always
     ports:

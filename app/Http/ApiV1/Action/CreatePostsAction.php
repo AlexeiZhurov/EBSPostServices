@@ -4,15 +4,16 @@ namespace App\Http\ApiV1\Action;
 use App\Model\Posts;
 class CreatePostsAction{
 
-    public function execute($request) : void
+    public function execute($data)
     {
-        $table = New Posts;
-        $table->title = $request->title;
-        $table->preview = $request->preview;
-        $table->text = $request->text;
-        $table->tags = $request->tags;
-        $table->user_id = $request->user_id;
-        $table->save();
+        $post = new Posts();
+        $post->title = $data['title'];
+        $post->preview = $data['preview'];
+        $post->text = $data['text'];
+        $post->tags = $data['tags'];
+        $post->user_id = $data['user_id'];
+        $post->save();
+        return $post;
     }
 
 } 
