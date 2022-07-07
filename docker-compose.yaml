@@ -29,6 +29,8 @@ services:
       POSTGRES_DB: ebs
       POSTGRES_USER: ebs
       POSTGRES_PASSWORD: ebs
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
   adminer:
     container_name: postgres-adminer
     image: adminer

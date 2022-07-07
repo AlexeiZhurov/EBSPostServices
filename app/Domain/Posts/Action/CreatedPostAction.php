@@ -1,8 +1,9 @@
 <?php
 namespace App\Domain\Posts\Action;
-// use App\Model\Posts;
+
 use App\Domain\Posts\Models\Post;
-class CreatedPostsAction{
+
+class CreatedPostAction{
 
     public function execute($data)
     {
