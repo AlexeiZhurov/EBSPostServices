@@ -15,6 +15,6 @@ class EmptyResource implements Responsable
      */
     public function toResponse($request): Response
     {
-        return response()->json(['data' => []]);
+        return response()->json(['data' => null]);
     }
 }

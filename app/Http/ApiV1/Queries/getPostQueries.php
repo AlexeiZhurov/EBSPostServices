@@ -1,13 +1,12 @@
 <?php
 namespace App\Http\ApiV1\Queries;
-
 use App\Domain\Posts\Models\Post;
 
-class getPostQueries{
+class GetPostQueries{
         
-    public function query(int $id) : Post|null
+    public function query(int $id) 
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         return $post;
     }    
         
