@@ -1,29 +1,26 @@
 <?php
-
 namespace App\Http\ApiV1\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\ApiV1\Requests\CreatePostsRequest;
-use App\Http\ApiV1\Resources\PostsResource;
-use App\Http\ApiV1\Action\CreatePostsAction;
+use App\Http\ApiV1\Resources\PostResource;
+use App\Domain\Posts\Action\CreatedPostsAction;
 use App\Http\ApiV1\Queries\allPostQueries;
-use App\Http\ApiV1\Resources\allPostResource;
 
 class PostController
 {
-    public function index(Request $request) 
+    public function index(Request $request)
     {
         $page = $request->get('page');
         $posts = (new allPostQueries())->query($page);
-        return PostsResource::collectPage($posts);
+        return PostResource::collectPage($posts);
     }
 
-    public function store(CreatePostsRequest $request, CreatePostsAction $action) : PostsResource
+    public function store(CreatePostsRequest $request, CreatedPostsAction $action) : PostResource
     {
         $validated = $request->validated();
-        $create = $action->execute($request->collect());
-        return new PostsResource($create);
+        $post = $action->execute($request->collect());
+        return new PostResource($post);
     }
 
     public function show(int $id) 

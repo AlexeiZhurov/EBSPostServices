@@ -20,11 +20,11 @@ class CreateAction extends Command
      */
     protected $description = 'Команда создает Action';
 
-    protected function getFileExample($name,$apiv): string
+    protected function getFileExample($name,$domain): string
     {
         $example = 
 "<?php
-namespace App\Http\ApiV{$apiv}\Action;
+namespace App\Domain\{$domain}\Action;
 // use App\Model\Posts;
 class {$name}Action{
         
@@ -44,14 +44,14 @@ class {$name}Action{
      */
     public function handle() : void
     {
-        $apiversion = $this->ask('Укажите версию Api');
+        $domain = $this->ask('Укажите имя Домена');
         $name = $this->ask('Введите название Action');
-        $path = "app/Http/ApiV{$apiversion}/Action";
+        $path = "app/Domain/{$domain}/Action";
         if(!file_exists($path)){
             mkdir($path, 0700,true);
         }
         $fp = fopen($path."/{$name}Action.php", "w");
-	    fwrite($fp, $this->getFileExample($name,$apiversion));
+	    fwrite($fp, $this->getFileExample($name,$domain));
 	    fclose($fp);
         $this->info('Действие создано в '.$path);
     }

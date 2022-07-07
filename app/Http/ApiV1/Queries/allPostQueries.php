@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\ApiV1\Queries;
-use App\Model\Posts;
+use App\Domain\Posts\Models\Post;
 use App\Http\ApiV1\Support\Pagination\Page;
 
 class allPostQueries{
         
     public  function query($page = 0)
     {
-        $posts = (New Posts);
+        $posts = (New Post);
         $offset = $page * 10;
         $limit = 10;
         $total = $posts->count(); 

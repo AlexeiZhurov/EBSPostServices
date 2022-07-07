@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\ApiV1\Resources;
  
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Http\ApiV1\Support\Resources\BaseJsonResource;
-class PostsResource extends BaseJsonResource
+
+class PostResource extends BaseJsonResource
 {
     
     public function toArray($data)
