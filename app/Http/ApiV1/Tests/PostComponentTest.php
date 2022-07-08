@@ -10,7 +10,7 @@ use function Pest\Laravel\postJson;
 uses(ApiV1ComponentTestCase::class);
 uses()->group('component');
 
-test('GET /api/v1/posts 200', function () {
+test('POST /api/v1/posts:all 200', function () {
     getJson('/api/v1/posts')
         ->assertStatus(200);
 });

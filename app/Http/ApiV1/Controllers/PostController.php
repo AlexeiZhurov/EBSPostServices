@@ -14,10 +14,10 @@ class PostController
 {
     public function index(Request $request)
     {
-        $pagination = $request->all();
+        $pagination = $request->input();
         $posts = (new AllPostQueries())->query();
-        $posts = (new PageBuilderFactory())->fromQuery($posts);
-        return $posts;
+        $page = (new PageBuilderFactory())->fromQuery($posts)->build();
+        return (new PostResource($posts))->collectPage($page);
     }
 
     public function store(CreatePostsRequest $request, CreatedPostAction $action) : PostResource

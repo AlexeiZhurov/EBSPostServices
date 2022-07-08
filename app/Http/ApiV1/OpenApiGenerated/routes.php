@@ -7,7 +7,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('posts', [\App\Http\ApiV1\Controllers\PostController::class, 'index'])->name('getPosts');
+Route::post('posts:all', [\App\Http\ApiV1\Controllers\PostController::class, 'index'])->name('getPosts');
 Route::post('posts', [\App\Http\ApiV1\Controllers\PostController::class, 'store'])->name('createPosts');
 Route::get('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'show'])->name('getPosts');
 Route::delete('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'destroy'])->name('deletePost');

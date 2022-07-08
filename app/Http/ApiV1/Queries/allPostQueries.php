@@ -1,16 +1,12 @@
 <?php
 namespace App\Http\ApiV1\Queries;
 use App\Domain\Posts\Models\Post;
-use Spatie\QueryBuilder\QueryBuilder;
 class AllPostQueries{
         
-    public  function query($page = 0)
+    public  function query()
     {
-        $posts = QueryBuilder::for(Post::class);
-        $offset = $page * 10;
-        $limit = 10;
-        $data = $posts->orderBy('id')->offset($offset)->limit($limit);
-        return $data;
+        $posts = Post::orderBy('created_at','DESC')->getQuery();
+        return $posts;
     }    
         
 }

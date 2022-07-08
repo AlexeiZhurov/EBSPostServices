@@ -1,5 +1,5 @@
 FROM composer:latest AS composer
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 RUN apt-get update --fix-missing \
     && apt-get install -y curl wget zip unzip git \
     && rm -rf /var/lib/apt/lists/*
