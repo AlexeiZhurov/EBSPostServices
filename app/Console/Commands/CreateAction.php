@@ -25,7 +25,7 @@ class CreateAction extends Command
         $example = 
 "<?php
 namespace App\Domain\{$domain}\Action;
-// use App\Model\Posts;
+use App\Domain\{$domain}\Models\YourModel;
 class {$name}Action{
         
     public function execute() : void

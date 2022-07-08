@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('posts:all', [\App\Http\ApiV1\Controllers\PostController::class, 'index'])->name('getPosts');
 Route::post('posts', [\App\Http\ApiV1\Controllers\PostController::class, 'store'])->name('createPosts');
-Route::get('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'show'])->name('getPosts');
+Route::get('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'show'])->name('getPost');
 Route::delete('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'destroy'])->name('deletePost');
 Route::patch('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'update'])->name('patchPost');
 Route::post('posts:search', [\App\Http\ApiV1\Controllers\PostController::class, 'search'])->name('searchPost');
