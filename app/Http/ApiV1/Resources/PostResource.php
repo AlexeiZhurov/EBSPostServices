@@ -4,9 +4,9 @@ namespace App\Http\ApiV1\Resources;
 use App\Http\ApiV1\Support\Resources\BaseJsonResource;
 class PostResource extends BaseJsonResource
 {
-    
-    public function toArray($data)
+    public function toArray($request)
     {
+        
         return [
             'id' => $this->id,
             'title' => $this->title,

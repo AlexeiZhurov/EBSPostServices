@@ -22,4 +22,8 @@ class Post extends Model
     public function voices_pos(){
         return $this->hasMany(Voice::class)->selectRaw('count(*) as count')->where('voices','1')->groupBy('post_id');
     }
+
+    public function voice(){
+        return $this->hasMany(Voice::class);
+    }
 }
