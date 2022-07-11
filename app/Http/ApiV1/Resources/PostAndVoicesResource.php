@@ -2,10 +2,11 @@
 namespace App\Http\ApiV1\Resources;
  
 use App\Http\ApiV1\Support\Resources\BaseJsonResource;
-class PostResource extends BaseJsonResource
+use App\Http\ApiV1\Resources\VoicesResource;
+class PostAndVoicesResource extends BaseJsonResource
 {
     
-    public function toArray($data)
+    public function toArray($request)
     {
         return [
             'id' => $this->id,
@@ -15,6 +16,7 @@ class PostResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
+            'voices' => $this->voices_pos[0]->count - $this->voices_dis[0]->count
         ];
     }
 }

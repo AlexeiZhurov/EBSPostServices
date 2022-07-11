@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Domain\Posts\Action\CreatedPostVoicesAction;
 use App\Http\ApiV1\Requests\CreatePostVoiceRequest;
 use App\Http\ApiV1\Resources\VoicesResource;
+use App\Http\ApiV1\Queries\GetPostVoicesQueries;
 class VoicesController
 {
     public function index(int $id) 
     {
-        
+        $voices = (new GetPostVoicesQueries())->query($id);
+        return VoicesResource::collection($voices);
     }
 
-    public function store(CreatePostVoiceRequest $request , CreatedPostVoicesAction $action, int $id,) 
+    public function store(CreatePostVoiceRequest $request , CreatedPostVoicesAction $action, int $id,):VoicesResource 
     {
         $voices = $action->execute($id,$request->collect());
 
