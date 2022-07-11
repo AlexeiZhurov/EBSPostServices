@@ -6,7 +6,6 @@ class PostResource extends BaseJsonResource
 {
     public function toArray($request)
     {
-        
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -15,6 +14,7 @@ class PostResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
+            // 'voices' => $this->voices_pos,Это строчка выдает ошибку , я не понимаю как реализовать включение полей , вместе с пагинацией
         ];
     }
 }
