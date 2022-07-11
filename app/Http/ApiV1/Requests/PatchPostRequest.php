@@ -14,7 +14,8 @@ class PatchPostRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'     => ['max:255'],
+            'preview'   => ['url'],
         ];
     }
 }
