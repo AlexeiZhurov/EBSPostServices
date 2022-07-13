@@ -18,7 +18,6 @@ class VoicesController
     public function store(CreatePostVoiceRequest $request , CreatedPostVoicesAction $action, int $id,) : VoicesResource 
     {
         $voices = $action->execute($id,$request->collect());
-
         return New VoicesResource($voices);
     }
 
