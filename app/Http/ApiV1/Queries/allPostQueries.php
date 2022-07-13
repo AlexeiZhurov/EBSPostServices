@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\ApiV1\Queries;
 use App\Domain\Posts\Models\Post;
-class AllPostQueries{
+use Illuminate\Database\Query\Builder;
+class AllPostQueries
+{
         
-    public  function query()
+    public  function query() : Builder
     {
-        $posts = Post::orderBy('created_at')->getQuery();
+        $posts = Post::orderBy('id','desc')->getQuery();
         return $posts;
     }    
         

@@ -15,19 +15,19 @@ class VoicesController
         return VoicesResource::collection($voices);
     }
 
-    public function store(CreatePostVoiceRequest $request , CreatedPostVoicesAction $action, int $id,):VoicesResource 
+    public function store(CreatePostVoiceRequest $request , CreatedPostVoicesAction $action, int $id,) : VoicesResource 
     {
         $voices = $action->execute($id,$request->collect());
 
         return New VoicesResource($voices);
     }
 
-    public function destroyAll(int $id, Request $request) 
+    public function destroyAll(int $id) 
     {
         //
     }
 
-    public function destroy(int $id, int $voice_id, Request $request) 
+    public function destroy(int $id, int $voice_id) 
     {
         //
     }

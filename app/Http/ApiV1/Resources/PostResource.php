@@ -14,7 +14,8 @@ class PostResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
-            // 'voices' => $this->voices_pos,Это строчка выдает ошибку , я не понимаю как реализовать включение полей , вместе с пагинацией
+            'rating'  => $this->rating,
+            'voices' => $this->whenLoaded('voice')
         ];
     }
 }

@@ -2,11 +2,12 @@
 namespace App\Http\ApiV1\Queries;
 use App\Domain\Posts\Models\Post;
 
-class GetPostQueries{
+class GetPostQueries
+{
         
-    public function query(int $id) 
+    public function query(int $id) : Post
     {
-        $post = Post::where('id', $id)->get();
+        $post = Post::where('id', $id)->get()->first();
         return $post;
     }    
         

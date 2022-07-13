@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\ApiV1\Queries;
 use App\Domain\Posts\Models\Voice;
-class GetPostVoicesQueries{
+class GetPostVoicesQueries
+{
         
-    public function query($post_id) 
+    public function query($post_id) : Voice
     {
-        $voices = (new Voice())->where('post_id',$post_id)->get();
+        $voices = Voice::where('post_id',$post_id)->get();
         return $voices;
     }    
         
