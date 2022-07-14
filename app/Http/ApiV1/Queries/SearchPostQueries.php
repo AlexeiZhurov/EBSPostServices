@@ -2,10 +2,8 @@
 namespace App\Http\ApiV1\Queries;
 
 use App\Domain\Posts\Models\Post;
-use App\Domain\Posts\Models\Voice;
 use App\Http\ApiV1\Requests\SearchPostParams;
 use App\Http\ApiV1\Support\Pagination\PageBuilderFactory;
-use App\Http\ApiV1\Support\Search\PostDetail;
 use App\Http\ApiV1\Support\Search\SearchPostPage;
 
 

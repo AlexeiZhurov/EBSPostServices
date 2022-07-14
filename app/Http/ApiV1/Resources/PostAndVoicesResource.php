@@ -16,6 +16,7 @@ class PostAndVoicesResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
+            'voices' => VoicesResource::collection($this->whenLoaded('voice'))
         ];
     }
 }

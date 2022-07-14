@@ -15,6 +15,7 @@ class PostResource extends BaseJsonResource
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
             'rating'  => $this->rating,
+
         ];
     }
 }

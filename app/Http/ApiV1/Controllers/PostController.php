@@ -19,7 +19,7 @@ use App\Http\ApiV1\Support\Pagination\PageBuilderFactory;
 
 class PostController
 {
-    public function index(Request $request)
+    public function index()
     {
         $posts = (new AllPostQueries())->query();
         $page = (new PageBuilderFactory())->fromQuery($posts)->build();
@@ -33,20 +33,19 @@ class PostController
         return new PostResource($post);
     }
 
-    public function show(int $id) 
+    public function show(SearchPostsRequest $request,int $id) 
     {
-        $post = (new GetPostQueries())->query($id);
-        return new PostResource($post);
-        
+        $post = (new GetPostQueries())->query($request,$id);
+        return new PostAndVoicesResource($post);
     }
 
-    public function destroy(int $id,DeletedPostAction $action) : EmptyResource
+    public function destroy(DeletedPostAction $action,int $id) : EmptyResource
     {
         $action->execute($id);
         return new EmptyResource();
     }
 
-    public function update(int $id, PatchPostRequest $request) : PostResource
+    public function update(PatchPostRequest $request,int $id) : PostResource
     {
         $post = (new PatchPostAction())->execute($id,$request->collect());
         return new PostResource($post);
@@ -54,7 +53,6 @@ class PostController
 
     public function search(SearchPostsRequest $request,SearchPostQueries $query) 
     {
-        // $request->input('sort',[]);
         $posts = $query->query($request);
         return new SearchPagePostResource($posts);
     }
