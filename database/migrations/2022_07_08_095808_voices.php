@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('post_id');
             $table->integer('user_id');
             $table->index(['post_id', 'user_id']);
-            $table->softDeletesTz($column = 'deleted_at', $precision = 0);
             $table->timestampsTz();
+            $table->softDeletes();
         });
     }
 

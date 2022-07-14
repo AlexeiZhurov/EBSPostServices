@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->char('title',255);
-            $table->char('preview',255)->nullable($value = true);
+            $table->string('title',255);
+            $table->string('preview',255)->nullable($value = true);
             $table->longText('tags')->nullable($value = true);
             $table->longText('text');
             $table->integer('user_id');
-            $table->softDeletesTz($column = 'deleted_at', $precision = 0);
             $table->timestampsTz();
+            $table->softDeletes();
         });
     }
 

@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Http\ApiV1\Resources;
- 
+
 use App\Http\ApiV1\Support\Resources\BaseJsonResource;
+
 class PostResource extends BaseJsonResource
 {
     public function toArray($request)
@@ -14,6 +16,7 @@ class PostResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
+            'deleted_at' => $this->deleted_at,
             'rating'  => $this->rating,
 
         ];

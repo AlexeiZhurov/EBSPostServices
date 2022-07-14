@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\ApiV1\Resources;
+
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\ApiV1\Support\Resources\BaseJsonResource;
- 
+
 class VoicesResource extends JsonResource
 {
-    
+
     public function toArray($data)
     {
         return [

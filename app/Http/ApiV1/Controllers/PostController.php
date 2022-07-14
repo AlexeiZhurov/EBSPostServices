@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Http\ApiV1\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\ApiV1\Requests\CreatePostsRequest;
 use App\Http\ApiV1\Requests\PatchPostRequest;
 use App\Http\ApiV1\Requests\SearchPostsRequest;
@@ -27,31 +27,31 @@ class PostController
         return PostResource::collection($page->items)->additional($append);
     }
 
-    public function store(CreatePostsRequest $request, CreatedPostAction $action) : PostResource
+    public function store(CreatePostsRequest $request, CreatedPostAction $action): PostResource
     {
         $post = $action->execute($request->collect());
         return new PostResource($post);
     }
 
-    public function show(SearchPostsRequest $request,int $id) 
+    public function show(SearchPostsRequest $request, int $id)
     {
-        $post = (new GetPostQueries())->query($request,$id);
+        $post = (new GetPostQueries())->query($request, $id);
         return new PostAndVoicesResource($post);
     }
 
-    public function destroy(DeletedPostAction $action,int $id) : EmptyResource
+    public function destroy(DeletedPostAction $action, int $id): EmptyResource
     {
         $action->execute($id);
         return new EmptyResource();
     }
 
-    public function update(PatchPostRequest $request,int $id) : PostResource
+    public function update(PatchPostRequest $request, int $id): PostResource
     {
-        $post = (new PatchPostAction())->execute($id,$request->collect());
+        $post = (new PatchPostAction())->execute($id, $request->collect());
         return new PostResource($post);
     }
 
-    public function search(SearchPostsRequest $request,SearchPostQueries $query) 
+    public function search(SearchPostsRequest $request, SearchPostQueries $query)
     {
         $posts = $query->query($request);
         return new SearchPagePostResource($posts);

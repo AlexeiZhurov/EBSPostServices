@@ -1,13 +1,15 @@
 <?php
+
 namespace App\Http\ApiV1\Resources;
- 
+
 use App\Http\ApiV1\Support\Resources\BaseJsonResource;
 use App\Http\ApiV1\Resources\VoicesResource;
+
 class PostAndVoicesResource extends BaseJsonResource
 {
-    
+
     public function toArray($request)
-    {   
+    {
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -16,6 +18,7 @@ class PostAndVoicesResource extends BaseJsonResource
             'text' => $this->text,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
+            'rating' => $this->rating,
             'voices' => VoicesResource::collection($this->whenLoaded('voice'))
         ];
     }
