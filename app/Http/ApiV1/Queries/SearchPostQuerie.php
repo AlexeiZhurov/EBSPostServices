@@ -16,7 +16,7 @@ class SearchPostQueries
     public const INCLUDE_VOICES = 'voices';
 
 
-    public function query(SearchPostParams $params): SearchPostPage
+    public function find(SearchPostParams $params): SearchPostPage
     {
         $query = Post::query()->where('id', '>', 0);
         // var_dump($params->getFilter());

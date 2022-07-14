@@ -11,17 +11,18 @@ use App\Http\ApiV1\Resources\SearchPagePostResource;
 use App\Domain\Posts\Action\CreatedPostAction;
 use App\Domain\Posts\Action\DeletedPostAction;
 use App\Domain\Posts\Action\PatchPostAction;
-use App\Http\ApiV1\Queries\AllPostQueries;
-use App\Http\ApiV1\Queries\GetPostQueries;
-use App\Http\ApiV1\Queries\SearchPostQueries;
+use App\Http\ApiV1\Queries\AllPostQuerie;
+use App\Http\ApiV1\Queries\GetPostQuerie;
+use App\Http\ApiV1\Queries\SearchPostQuerie;
 use App\Http\ApiV1\Support\Resources\EmptyResource;
 use App\Http\ApiV1\Support\Pagination\PageBuilderFactory;
+use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostController
 {
-    public function index()
+    public function index() : AnonymousResourceCollection
     {
-        $posts = (new AllPostQueries())->query();
+        $posts = (new AllPostQuerie())->get();
         $page = (new PageBuilderFactory())->fromQuery($posts)->build();
         $append = ['meta' => ['pagination' => $page->pagination]];
         return PostResource::collection($page->items)->additional($append);
@@ -33,9 +34,9 @@ class PostController
         return new PostResource($post);
     }
 
-    public function show(SearchPostsRequest $request, int $id)
+    public function show(SearchPostsRequest $request, int $id) : PostAndVoicesResource
     {
-        $post = (new GetPostQueries())->query($request, $id);
+        $post = (new GetPostQuerie())->get($request, $id);
         return new PostAndVoicesResource($post);
     }
 
@@ -51,9 +52,9 @@ class PostController
         return new PostResource($post);
     }
 
-    public function search(SearchPostsRequest $request, SearchPostQueries $query)
+    public function search(SearchPostsRequest $request, SearchPostQuerie $query) : SearchPagePostResource
     {
-        $posts = $query->query($request);
+        $posts = $query->find($request);
         return new SearchPagePostResource($posts);
     }
 }

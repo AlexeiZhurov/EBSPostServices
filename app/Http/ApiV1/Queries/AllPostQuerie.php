@@ -5,7 +5,7 @@ use Illuminate\Database\Query\Builder;
 class AllPostQueries
 {
         
-    public  function query() : Builder
+    public  function get() : Builder
     {
         $posts = Post::orderBy('id','desc')->getQuery();
         return $posts;

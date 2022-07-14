@@ -11,14 +11,14 @@ use App\Http\ApiV1\Requests\CreatePostVoiceRequest;
 use App\Http\ApiV1\Requests\PatchPostVoicesRequest;
 use App\Http\ApiV1\Resources\VoicesResource;
 use App\Http\ApiV1\Support\Resources\EmptyResource;
-use App\Http\ApiV1\Queries\GetPostVoicesQueries;
+use App\Http\ApiV1\Queries\GetPostVoicesQuerie;
 use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class VoicesController
 {
     public function index(int $id) : AnonymousResourceCollection
     {
-        $voices = (new GetPostVoicesQueries())->query($id);
+        $voices = (new GetPostVoicesQuerie())->get($id);
         return VoicesResource::collection($voices);
     }
 

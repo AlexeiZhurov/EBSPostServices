@@ -5,11 +5,11 @@ namespace App\Http\ApiV1\Queries;
 use App\Domain\Posts\Models\Post;
 use App\Http\ApiV1\Requests\SearchPostParams;
 
-class GetPostQueries
+class GetPostQuerie
 {
     const INCLUDE_VOICES = 'voices';
 
-    public function query(SearchPostParams $params, int $id)
+    public function get(SearchPostParams $params, int $id) : Post
     {
 
         $query = Post::where('id', $id);
