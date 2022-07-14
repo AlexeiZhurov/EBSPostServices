@@ -54,6 +54,7 @@ class PostController
 
     public function search(SearchPostsRequest $request,SearchPostQueries $query) 
     {
+        // $request->input('sort',[]);
         $posts = $query->query($request);
         return new SearchPagePostResource($posts);
     }
