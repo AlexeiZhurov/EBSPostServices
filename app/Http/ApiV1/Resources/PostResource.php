@@ -6,7 +6,7 @@ use App\Http\ApiV1\Support\Resources\BaseJsonResource;
 
 class PostResource extends BaseJsonResource
 {
-    public function toArray($request) : array
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

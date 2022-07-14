@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class VoicesResource extends JsonResource
 {
 
-    public function toArray($data) : array
+    public function toArray($data): array
     {
         return [
             'id' => $this->id,

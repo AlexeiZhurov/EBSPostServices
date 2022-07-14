@@ -12,10 +12,11 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title','preview','text','tags','user_id'];
-   
+    protected $fillable = ['title', 'preview', 'text', 'tags', 'user_id'];
 
-    public function voice(){
+
+    public function voices()
+    {
         return $this->hasMany(Voice::class);
     }
 }

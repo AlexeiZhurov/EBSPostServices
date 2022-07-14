@@ -25,7 +25,7 @@ class SearchPostQuerie
                 case 'rating_gte':
                     $query->where('rating', '>=', $value);
                     break;
-                case 'rating_lt':
+                case 'rating_lte':
                     $query->where('rating', '<=', $value);
                     break;
                 case 'tags_like':

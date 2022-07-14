@@ -8,7 +8,7 @@ use App\Http\ApiV1\Resources\VoicesResource;
 class PostAndVoicesResource extends BaseJsonResource
 {
 
-    public function toArray($request) : array
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

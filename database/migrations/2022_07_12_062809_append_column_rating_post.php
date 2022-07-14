@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function ($table) {
-            $table->string('rating', 255)->nullable($value = true);
+            $table->integer('rating')->nullable($value = true);
         });
     }
 

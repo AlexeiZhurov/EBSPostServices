@@ -9,7 +9,7 @@ use App\Http\ApiV1\Support\Resources\BaseJsonResource;
 class SearchPagePostResource extends BaseJsonResource
 {
 
-    public function toArray($request) : array
+    public function toArray($request): array
     {
         return [
             'data' => PostAndVoicesResource::collection($this->posts),

@@ -16,7 +16,7 @@ use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class VoicesController
 {
-    public function index(int $id) : AnonymousResourceCollection
+    public function index(int $id): AnonymousResourceCollection
     {
         $voices = (new GetPostVoicesQuerie())->get($id);
         return VoicesResource::collection($voices);
@@ -28,21 +28,21 @@ class VoicesController
         return new VoicesResource($voices);
     }
 
-    public function destroyAll(DeletedAllVoicesPostAction $action, int $id) : EmptyResource
+    public function destroyAll(DeletedAllVoicesPostAction $action, int $id): EmptyResource
     {
         $action->execute($id);
         return new EmptyResource();
     }
 
-    public function destroy(DeletedVoicePostAction $action,int $id, int $voice_id) : EmptyResource
-    {   
-        $action->execute($id,$voice_id);
+    public function destroy(DeletedVoicePostAction $action, int $id, int $voice_id): EmptyResource
+    {
+        $action->execute($id, $voice_id);
         return new EmptyResource();
     }
 
-    public function update(PatchPostVoicesRequest $request,int $id, int $voice_id) : VoicesResource
+    public function update(PatchPostVoicesRequest $request, int $id, int $voice_id): VoicesResource
     {
-        $voice = (new PatchVoicePostAction())->execute($id,$voice_id,$request->collect());
+        $voice = (new PatchVoicePostAction())->execute($id, $voice_id, $request->collect());
         return new VoicesResource($voice);
     }
 

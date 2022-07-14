@@ -11,12 +11,11 @@ class GetPostQuerie
     //Возврощате пост с его голосами или без
     public function get(SearchPostParams $params, int $id): Post
     {
-        $query = Post::where('id', $id);//Поиска поста по id
+        $query = Post::findOrFail($id); //Поиска поста по id
         //Проверка нужно включить в результат голоса данного поста
         if ($params->isInclude(self::INCLUDE_VOICES)) {
             $query->with('voice');
         }
-
         $post = $query->get()->first();
         return $post;
     }

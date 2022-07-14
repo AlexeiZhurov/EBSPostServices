@@ -15,17 +15,14 @@ use App\Http\ApiV1\Queries\AllPostQuerie;
 use App\Http\ApiV1\Queries\GetPostQuerie;
 use App\Http\ApiV1\Queries\SearchPostQuerie;
 use App\Http\ApiV1\Support\Resources\EmptyResource;
-use App\Http\ApiV1\Support\Pagination\PageBuilderFactory;
 use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostController
 {
-    public function index() : AnonymousResourceCollection
-    {
-        $posts = (new AllPostQuerie())->get();
-        $page = (new PageBuilderFactory())->fromQuery($posts)->build();
-        $append = ['meta' => ['pagination' => $page->pagination]];
-        return PostResource::collection($page->items)->additional($append);
+    public function index(): AnonymousResourceCollection
+    { 
+        $page = (new AllPostQuerie())->get();
+        return PostResource::collectPage($page);
     }
 
     public function store(CreatePostsRequest $request, CreatedPostAction $action): PostResource
@@ -34,7 +31,7 @@ class PostController
         return new PostResource($post);
     }
 
-    public function show(SearchPostsRequest $request, int $id) : PostAndVoicesResource
+    public function show(SearchPostsRequest $request, int $id): PostAndVoicesResource
     {
         $post = (new GetPostQuerie())->get($request, $id);
         return new PostAndVoicesResource($post);
@@ -52,7 +49,7 @@ class PostController
         return new PostResource($post);
     }
 
-    public function search(SearchPostsRequest $request, SearchPostQuerie $query) : SearchPagePostResource
+    public function search(SearchPostsRequest $request, SearchPostQuerie $query): SearchPagePostResource
     {
         $posts = $query->find($request);
         return new SearchPagePostResource($posts);
