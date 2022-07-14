@@ -5,6 +5,7 @@ use App\Domain\Posts\Models\Post;
 
 class CreatedPostAction{
 
+    //Создаете пост из переданых параметров
     public function execute($data) : Post 
     {
         $post = new Post();

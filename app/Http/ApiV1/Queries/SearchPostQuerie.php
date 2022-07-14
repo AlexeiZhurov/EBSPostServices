@@ -10,7 +10,7 @@ use App\Http\ApiV1\Support\Search\SearchPostPage;
 
 use InvalidArgumentException;
 
-class SearchPostQueries
+class SearchPostQuerie
 {
 
     public const INCLUDE_VOICES = 'voices';
@@ -19,7 +19,7 @@ class SearchPostQueries
     public function find(SearchPostParams $params): SearchPostPage
     {
         $query = Post::query()->where('id', '>', 0);
-        // var_dump($params->getFilter());
+        //Перебор фильтров переданых в параметрах
         foreach ($params->getFilter() as $filter => $value) {
             switch ($filter) {
                 case 'rating_gte':
@@ -43,7 +43,7 @@ class SearchPostQueries
                     throw new InvalidArgumentException("{$filter} фильтр не найден");
             }
         }
-
+        //Использование фильтров к запросу из переданого параметра
         foreach ($params->getSort() as $sort => $value) {
             switch ($value) {
                 case 'id':
