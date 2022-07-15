@@ -3,6 +3,7 @@
 namespace App\Domain\Posts\Action;
 
 use App\Domain\Posts\Models\Voice;
+use App\Domain\Posts\Action\UpdateTotalRatingAction;
 
 class DeletedAllVoicesPostAction
 {
@@ -10,5 +11,7 @@ class DeletedAllVoicesPostAction
     public function execute($id): void
     {
         Voice::where('post_id', $id)->delete();
+        (new UpdateTotalRatingAction())->execute($id); //Вызов экшена который обновить суммарный рейтинг поста
+
     }
 }
