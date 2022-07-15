@@ -5,7 +5,7 @@ use App\Domain\Posts\Models\Post;
 
 class CreatedPostAction{
 
-    public function execute($data)
+    public function execute($data) : Post 
     {
         $post = new Post();
         $post->title = $data['title'];

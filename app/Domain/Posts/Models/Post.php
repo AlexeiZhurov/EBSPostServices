@@ -13,15 +13,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = ['title','preview','text','tags','user_id'];
-    //Получение отрицательных оценок
-    public function voices_dis()
-    {
-        return $this->hasMany(Voice::class)->selectRaw('count(*) as count')->where('voices','-1')->groupBy('post_id');
-    }
-    //Получение количества положительных оценок 
-    public function voices_pos(){
-        return $this->hasMany(Voice::class)->selectRaw('count(*) as count')->where('voices','1')->groupBy('post_id');
-    }
+   
 
     public function voice(){
         return $this->hasMany(Voice::class);
