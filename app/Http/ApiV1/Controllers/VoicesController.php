@@ -26,7 +26,7 @@ class VoicesController
 
     public function store(CreatePostVoiceRequest $request, CreatedPostVoicesAction $action, int $id,): VoicesResource
     {
-        $voices = $action->execute($id, $request->collect());
+        $voices = $action->execute($id, $request->all());
         return new VoicesResource($voices);
     }
 
@@ -44,7 +44,7 @@ class VoicesController
 
     public function update(PatchPostVoicesRequest $request, int $id, int $voice_id): VoicesResource
     {
-        $voice = (new PatchVoicePostAction())->execute($id, $voice_id, $request->collect());
+        $voice = (new PatchVoicePostAction())->execute($id, $voice_id, $request->all());
         return new VoicesResource($voice);
     }
 

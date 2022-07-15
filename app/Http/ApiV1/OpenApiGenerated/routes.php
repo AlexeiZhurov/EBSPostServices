@@ -18,4 +18,4 @@ Route::post('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::
 Route::delete('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroyAll'])->name('deletePostsVoices');
 Route::delete('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroy'])->name('deletePost');
 Route::patch('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'update'])->name('patchPost');
-Route::post('posts/voices:search', [\App\Http\ApiV1\Controllers\VoicesController::class, 'search'])->name('searchPost');
+Route::post('posts/voices:search', [\App\Http\ApiV1\Controllers\VoicesController::class, 'search'])->name('searchPostVoices');
