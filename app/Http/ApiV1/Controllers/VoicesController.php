@@ -48,7 +48,7 @@ class VoicesController
         return new VoicesResource($voice);
     }
 
-    public function search(SearchPostVoicesRequest $request, SearchVoiceQuerie $query) : AnonymousResourceCollection
+    public function search(SearchPostVoicesRequest $request, SearchVoiceQuerie $query): AnonymousResourceCollection
     {
         $page = $query->get($request);
         return VoicesResource::collectPage($page);

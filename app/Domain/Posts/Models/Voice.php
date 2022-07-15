@@ -22,4 +22,5 @@ class Voice extends Model
     use SoftDeletes;
 
     protected $fillable = ['voices', 'user_id', 'post_id'];
+    protected $dates = ['deleted_at'];
 }
