@@ -2,9 +2,9 @@
 
 namespace App\Http\ApiV1\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\ApiV1\Support\Resources\BaseJsonResource;
 
-class VoicesResource extends JsonResource
+class VoicesResource extends BaseJsonResource
 {
 
     public function toArray($data): array

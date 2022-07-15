@@ -20,7 +20,7 @@ use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class PostController
 {
     public function index(): AnonymousResourceCollection
-    { 
+    {
         $page = (new AllPostQuerie())->get();
         return PostResource::collectPage($page);
     }

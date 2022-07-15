@@ -37,8 +37,6 @@ class SearchPostQuerie
                 case 'text_like':
                     $query->where('text', 'like', "%{$value}%");
                     break;
-                case 'default':
-                    break;
                 default:
                     throw new InvalidArgumentException("{$filter} фильтр не найден");
             }

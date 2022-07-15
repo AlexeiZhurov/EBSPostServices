@@ -9,9 +9,11 @@ use App\Domain\Posts\Action\DeletedVoicePostAction;
 use App\Domain\Posts\Action\PatchVoicePostAction;
 use App\Http\ApiV1\Requests\CreatePostVoiceRequest;
 use App\Http\ApiV1\Requests\PatchPostVoicesRequest;
+use App\Http\ApiV1\Requests\SearchPostVoicesRequest;
 use App\Http\ApiV1\Resources\VoicesResource;
 use App\Http\ApiV1\Support\Resources\EmptyResource;
 use App\Http\ApiV1\Queries\GetPostVoicesQuerie;
+use App\Http\ApiV1\Queries\SearchVoiceQuerie;
 use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class VoicesController
@@ -46,8 +48,9 @@ class VoicesController
         return new VoicesResource($voice);
     }
 
-    public function search(Request $request)
+    public function search(SearchPostVoicesRequest $request, SearchVoiceQuerie $query) : AnonymousResourceCollection
     {
-        //
+        $page = $query->get($request);
+        return VoicesResource::collectPage($page);
     }
 }

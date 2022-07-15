@@ -48,7 +48,7 @@ class {$name}Querie{
         if(!file_exists($path)){
             mkdir($path, 0700,true);
         }
-        $fp = fopen($path."/{$name}Queries.php", "w");
+        $fp = fopen($path."/{$name}Querie.php", "w");
 	    fwrite($fp, $this->getFileExample($name,$apiversion));
 	    fclose($fp);
         $this->info('Запрос создан в '.$path);
