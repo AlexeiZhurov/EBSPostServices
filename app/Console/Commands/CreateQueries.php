@@ -18,16 +18,16 @@ class CreateQueries extends Command
      *
      * @var string
      */
-    protected $description = 'Создает Queries';
+    protected $description = 'Создает Querie';
     protected function getFileExample($name,$apiv) : string
     {
         $example = 
 "<?php
 namespace App\Http\ApiV{$apiv}\Queries;
 // use App\Model\Posts;
-class {$name}Queries{
+class {$name}Querie{
         
-    public function query() : void
+    public function get() : void
     {
         //code
     }    

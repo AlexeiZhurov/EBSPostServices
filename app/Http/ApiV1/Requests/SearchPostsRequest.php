@@ -16,13 +16,18 @@ class SearchPostsRequest extends BaseFormRequest implements SearchPostParams
     {
         return [
             'filter' => ['array'],
-            'filter.reating_gte' => ['integer', 'min:0'],
+            'filter.reating_gte'    => ['integer', 'min:0'],
+            'filter.reating_lte'    => ['integer', 'min:0'],
+            'filter.title_like'     => ['string'],
+            'filter.text_like'      => ['string'],
+            'filter.tags_like'      => ['string'],
+
 
             'include'   =>   ['array'],
             'include.*' =>   ['string'],
 
-            'sort' => ['array'],
-            'sort.*' => ['string'],
+            'sort'      => ['array'],
+            'sort.*'    => ['string'],
         ];
     }
 
