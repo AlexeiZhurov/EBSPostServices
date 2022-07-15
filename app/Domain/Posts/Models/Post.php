@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/*Table posts
-    id
-    title
-    preview
-    tags
-    text
-    user_id
-    rating
-    created_at
-    updated_at
-    deleted_at
+/**
+ * Class Post
+ * 
+ * @package App\Domain\Posts\Models
+ * @property int $id - id поста 
+ * @property string $title - название поста 
+ * @property string|null $preview - ссылка на обложку
+ * @property string $tags - теги поста
+ * @property int $user_id - id полозователя который создал пост
+ * @property int $rating - сумарынй рейтинг постам
+ * @property Carbon $created_at - дата создания 
+ * @property Carbon $updated_at - дата создания
+ * @property Carbon $deleted_at - дата удаления
 */
 class Post extends Model
 {
