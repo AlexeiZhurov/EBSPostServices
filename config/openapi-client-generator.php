@@ -15,17 +15,17 @@ return [
     /*
      * Git user
      */
-    'git_user' => 'greensight/ensi',
+    'git_user' => 'AlexeiZhurov/zhurov@greensight.ru',
 
     /*
      * Git repository name template
      */
-    'git_repo_template' => 'backend-service-skeleton-client',
+    'git_repo_template' => 'EBSPostServices',
 
     /*
      * Git host
      */
-    'git_host' => 'gitlab.com',
+    'git_host' => 'github.com',
 
     /*
      * Args for generate nodejs client
@@ -57,20 +57,20 @@ return [
         /*
          * Package name for composer, use standard pattern namespace/package
          */
-        'composer_name' => 'ensi/backend-service-skeleton-client',
+        'composer_name' => 'ensi/postservices',
 
         /*
          * Specific generator params from https://openapi-generator.tech/docs/generators/php/
          */
         'params' => [
             'apiPackage' => 'Api',
-            'invokerPackage' => 'Ensi\BackendServiceSkeletonClient',
+            'invokerPackage' => 'Ensi\EBSPost',
             'modelPackage' => 'Dto',
-            'packageName' => 'BackendServiceSkeletonClient',
+            'packageName' => 'EBSPost',
         ],
 
 
-        'laravel_package_config_key' => 'openapi-clients.backend-service-skeleton',
+        'laravel_package_config_key' => 'openapi-clients.ebs_post_service',
 
         'files_to_ignore_during_cleanup' => ['.git', '.gitignore'],
 
