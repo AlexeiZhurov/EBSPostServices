@@ -2,16 +2,16 @@
 
 namespace App\Domain\Posts\Action;
 
-use App\Domain\Posts\Models\Post;
+use App\Domain\Posts\Models\Voice;
 use App\Domain\Posts\Action\UpdateTotalRatingAction;
 
-class DeletedPostAction
+class DeletedAllVoicesPostAction
 {
-    //Удаляет пост
-    public function execute($id): bool|null
+    //Удаляет все голоса по post_id
+    public function execute($id): void
     {
-        $post = Post::findOrFail($id)->delete();
+        Voice::where('post_id', $id)->delete();
         (new UpdateTotalRatingAction())->execute($id); //Вызов экшена который обновить суммарный рейтинг поста
-        return $post;
+
     }
 }

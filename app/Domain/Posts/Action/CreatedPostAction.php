@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Domain\Posts\Action;
 
 use App\Domain\Posts\Models\Post;
 
-class CreatedPostAction{
+class CreatedPostAction
+{
 
-    public function execute($data) : Post 
+    //Создаете пост из переданых параметров
+    public function execute($data): Post
     {
         $post = new Post();
         $post->title = $data['title'];
@@ -17,5 +20,4 @@ class CreatedPostAction{
         $post = $post->fresh();
         return $post;
     }
-
 }
