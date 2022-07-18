@@ -3,7 +3,7 @@
 namespace App\Http\ApiV1\Requests;
 
 
-interface SearchPostParams
+interface SearchVoiceParams
 {
     public function getFilter(): array;
     public function getSort(): array;

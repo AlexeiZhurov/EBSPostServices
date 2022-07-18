@@ -20,10 +20,10 @@ class CreateAction extends Command
      */
     protected $description = 'Команда создает Action';
 
-    protected function getFileExample($name,$domain): string
+    protected function getFileExample($name, $domain): string
     {
-        $example = 
-"<?php
+        $example =
+            "<?php
 namespace App\Domain\{$domain}\Action;
 use App\Domain\{$domain}\Models\YourModel;
 class {$name}Action{
@@ -42,17 +42,17 @@ class {$name}Action{
      *
      * @return int
      */
-    public function handle() : void
+    public function handle(): void
     {
         $domain = $this->ask('Укажите имя Домена');
         $name = $this->ask('Введите название Action');
         $path = "app/Domain/{$domain}/Action";
-        if(!file_exists($path)){
-            mkdir($path, 0700,true);
+        if (!file_exists($path)) {
+            mkdir($path, 0700, true);
         }
-        $fp = fopen($path."/{$name}Action.php", "w");
-	    fwrite($fp, $this->getFileExample($name,$domain));
-	    fclose($fp);
-        $this->info('Действие создано в '.$path);
+        $fp = fopen($path . "/{$name}Action.php", "w");
+        fwrite($fp, $this->getFileExample($name, $domain));
+        fclose($fp);
+        $this->info('Действие создано в ' . $path);
     }
 }
