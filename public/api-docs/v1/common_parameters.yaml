@@ -1,3 +1,4 @@
+#id для операций над определенным постом
 PathId:
   in: path
   name: id
@@ -7,7 +8,16 @@ PathId:
     minimum: 1
   description: Числовой id
   example: 1
-
+VoicesId:
+  in: path
+  name: voice-id
+  required: true
+  schema:
+    type: integer
+    minimum: 1
+  description: Числовой id
+  example: 1
+#Описание по офрмлению сущностей для добавления ответа
 QueryInclude:
   in: query
   name: include

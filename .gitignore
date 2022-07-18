@@ -43,7 +43,7 @@ yarn-error.log
 *.wav
 *.mp3
 *.avi
-
+/postgres
 # Compiled source #
 ###################
 *.com

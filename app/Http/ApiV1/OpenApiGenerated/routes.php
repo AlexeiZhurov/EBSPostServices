@@ -7,4 +7,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('examples/{id}', [\App\Http\ApiV1\Controllers\FoosController::class, 'get'])->name('getExample');
+Route::post('posts:all', [\App\Http\ApiV1\Controllers\PostController::class, 'index'])->name('getPosts');
+Route::post('posts', [\App\Http\ApiV1\Controllers\PostController::class, 'store'])->name('createPosts');
+Route::get('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'show'])->name('getPost');
+Route::delete('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'destroy'])->name('deletePost');
+Route::patch('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'update'])->name('patchPost');
+Route::post('posts:search', [\App\Http\ApiV1\Controllers\PostController::class, 'search'])->name('searchPost');
+Route::get('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'index'])->name('getPostsVoices');
+Route::post('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'store'])->name('createPostsVoices');
+Route::delete('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroyAll'])->name('deletePostsVoices');
+Route::delete('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroy'])->name('deletePost');
+Route::patch('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'update'])->name('patchPost');
+Route::post('posts/voices:search', [\App\Http\ApiV1\Controllers\VoicesController::class, 'search'])->name('searchPost');
