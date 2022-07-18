@@ -26,12 +26,12 @@ class ResetPostVoice extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(DeletedAllVoicesPostAction $action)
     {
         $post_id = $this->argument('post_id');
         if($post_id){
-            (new DeletedAllVoicesPostAction())->execute($post_id);
-            $this->info('Post Voice deleted successfully');   
+            $action->execute($post_id);
+            $this->info('Post Voices deleted successfully');   
         }
     }
 }

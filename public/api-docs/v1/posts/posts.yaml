@@ -30,10 +30,14 @@ PostFillableProperties:
       type: integer
       description: Идентификатор пользователя
       example: 42
+    rating:
+      type: integer
+      description: сумарный рейтинг поста
+      example: 42
     created_at:
       type: string 
       format: date-time
-      example: 2020-01-01T15:47:21.000000Z
+      example: '2020-01-01T15:47:21.000000Z'
 #Обезательные свойства при запросе
 PostRequiredRequestProperties:
   type: object
@@ -62,6 +66,8 @@ PostRequiredResponseProperties:
     - preview 
     - text
     - tags
+    - rating
+    - user_id
     - created_at
 #Описание ответа с пагинцией
 PostsResponse:
@@ -78,7 +84,6 @@ PostsResponse:
           $ref: '../common_schemas.yaml#/ResponseBodyPagination'
   required:
       - data
-      - meta
 #Что собой предстовляет сущность пост
 Post:
   allOf:
@@ -115,38 +120,44 @@ PostFile:
 SearchPostsFilter:
   type: object
   properties:
-    tags_like:
-      type: array
-      example: [php,js]
-    voice:
+    rating_gte:
       type: integer
-      example: 5
-    voice_gt:
+      example: 1
+    rating_lte:
       type: integer
       example: 2
-    voice_lt:
+    user_id:
       type: integer
-      example: 10
+      example: 3
+    tags_like:
+      type: string
+      example: php
+    text_like:
+      type: string
+      example: html
+    title_like:
+      type: string
+      example: google
 #Доп данные которые можно включить в запрос
 PostIncludes:
   type: object
   properties: 
-    voice_count:
+    voices:
       type: array
       items:
-        $ref: './posts_voices.yaml#/VoicesCount'
+        $ref: './posts_voices.yaml#/Voices'
 #Описание сортировки
 RequestPostSort:
   type: array
   items:
     type: string
-    example: "desc or asc"
+    example: "created_at"
 #описание подлючаемых сущностей
 RequestPostInclude:
   type: array
   items:
     type: string
-    example: 'voices_count'
+    example: 'voices'
 #Описание запроса на поиск
 SearchPostsRequest:
   type: object
@@ -174,4 +185,3 @@ SearchPostsResponse:
           $ref: '../common_schemas.yaml#/ResponseBodyPagination'
   required:
       - data
-      - meta

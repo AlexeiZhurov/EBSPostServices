@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Voice
+ * 
+ * @package App\Domain\Posts\Models
  * @property int $id - id голоса 
  * @property int $voices - лайк(1) или дизлайк(-1)
  * @property int $user_id - полозоватлье который проголосовал
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $created_at - дата создания 
  * @property Carbon $updated_at - дата создания
  * @property Carbon $deleted_at - дата удаления   
-*/
+ */
 
 class Voice extends Model
 {

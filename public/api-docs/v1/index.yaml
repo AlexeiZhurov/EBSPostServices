@@ -170,8 +170,8 @@ paths:
       operationId: createPostVoice
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@store'
       x-lg-route-name: 'createPostsVoices'
-      summary: Создание поста
-      description: Данный метод позволит создать пост
+      summary: Создание голоса поста
+      description: Данный метод позволит проголосовать за пост
       parameters:
         - $ref: '#/components/parameters/PathId'
       responses:

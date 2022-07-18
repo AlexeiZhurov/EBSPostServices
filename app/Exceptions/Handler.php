@@ -127,7 +127,7 @@ class Handler extends ExceptionHandler
             ];
         }
 
-        return $this->formatErrorPayload([ $error ]);
+        return $this->formatErrorPayload([$error]);
     }
 
     protected function getExceptionStatusCode(Throwable $exception): int
