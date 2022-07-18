@@ -27,7 +27,7 @@ class PostController
 
     public function store(CreatePostsRequest $request, CreatedPostAction $action): PostResource
     {
-        $post = $action->execute($request->collect());
+        $post = $action->execute($request->all());
         return new PostResource($post);
     }
 
@@ -45,7 +45,7 @@ class PostController
 
     public function update(PatchPostRequest $request, int $id): PostResource
     {
-        $post = (new PatchPostAction())->execute($id, $request->collect());
+        $post = (new PatchPostAction())->execute($id, $request->all());
         return new PostResource($post);
     }
 

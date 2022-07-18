@@ -21,6 +21,7 @@ class SearchPostsRequest extends BaseFormRequest implements SearchPostParams
             'filter.title_like'     => ['string'],
             'filter.text_like'      => ['string'],
             'filter.tags_like'      => ['string'],
+            'filter.user_id'        => ['integer', 'min:0'],
 
 
             'include'   =>   ['array'],

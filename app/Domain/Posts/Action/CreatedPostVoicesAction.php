@@ -8,7 +8,7 @@ use App\Domain\Posts\Action\UpdateTotalRatingAction;
 class CreatedPostVoicesAction
 {
 
-    public function execute($id, $data): Voice
+    public function execute(int $id, array $data): Voice
     {
         $voice = new Voice();
         //Проверка того что пользователь еще не голосовал за данный пост

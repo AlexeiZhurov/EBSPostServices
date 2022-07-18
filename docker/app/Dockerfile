@@ -1,4 +1,4 @@
-FROM composer:latest AS composer
+#PHP
 FROM php:8.1-fpm
 RUN apt-get update --fix-missing \
     && apt-get install -y curl wget zip unzip git \
@@ -42,5 +42,11 @@ RUN mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && \
     composer self-update --preview
 RUN command -v composer
+#Java
+RUN apt update && \
+    apt-get install -y openjdk-11-jdk && \
+    apt-get install -y ant && \
+    apt-get clean;
+
 
 

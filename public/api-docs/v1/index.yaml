@@ -170,8 +170,8 @@ paths:
       operationId: createPostVoice
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@store'
       x-lg-route-name: 'createPostsVoices'
-      summary: Создание поста
-      description: Данный метод позволит создать пост
+      summary: Создание голоса поста
+      description: Данный метод позволит проголосовать за пост
       parameters:
         - $ref: '#/components/parameters/PathId'
       responses:
@@ -257,7 +257,7 @@ paths:
         - posts
       operationId: searchPostVoices
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@search'
-      x-lg-route-name: 'searchPost'
+      x-lg-route-name: 'searchPostVoices'
       summary: Поиск голосов поста
       description: Метод позволяет проводит поиск голосов
       requestBody:
@@ -277,30 +277,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "500":
           $ref: '#/components/responses/ServerError' 
-  # /examples/{id}:
-  #   get:
-  #     tags:
-  #       - examples
-  #     operationId: getExample
-  #     x-lg-handler: 'App\Http\ApiV1\Controllers\FoosController@get'
-  #     x-lg-route-name: 'getExample'
-  #     x-lg-skip-request-generation: true
-  #     summary: Получение объекта типа Example
-  #     description: Получение объекта типа Example
-  #     parameters:
-  #       - $ref: '#/components/parameters/PathId'
-  #       - $ref: '#/components/parameters/QueryInclude'
-  #     responses:
-  #       "200":
-  #         description: Успешный ответ
-  #         content:
-  #          application/json:
-  #            schema:
-  #              $ref: './posts.yaml#/PostsResponse'
-  #       "404":
-  #         $ref: '#/components/responses/NotFound'
-  #       "500":
-  #         $ref: '#/components/responses/ServerError'
+
 components:
   parameters:
     QueryInclude:
