@@ -12,7 +12,7 @@ class ResetPostVoice extends Command
      *
      * @var string
      */
-    protected $signature = 'post:reset-rating {post_id}';
+    protected $signature = 'post:reset-rating {postId}';
 
     /**
      * The console command description.
@@ -28,10 +28,10 @@ class ResetPostVoice extends Command
      */
     public function handle(DeletedAllVoicesPostAction $action)
     {
-        $post_id = $this->argument('post_id');
-        if($post_id){
-            $action->execute($post_id);
-            $this->info('Post Voices deleted successfully');   
+        $postId = $this->argument('postId');
+        if ($postId) {
+            $action->execute($postId);
+            $this->info('Post Voices deleted successfully');
         }
     }
 }

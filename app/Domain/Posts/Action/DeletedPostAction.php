@@ -3,6 +3,7 @@
 namespace App\Domain\Posts\Action;
 
 use App\Domain\Posts\Models\Post;
+
 class DeletedPostAction
 {
     //Удаляет пост

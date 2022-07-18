@@ -13,8 +13,8 @@ tags:
   - name: posts
     description: Тэг для ресурса posts
 paths:
-  /posts:
-    get:
+  /posts:all:
+    post:
       tags: 
         - posts
       operationId: getPosts
@@ -32,6 +32,7 @@ paths:
                 $ref: './posts/posts.yaml#/PostsResponse'
         "500":
           $ref: '#/components/responses/ServerError'
+  /posts:
     post:
       tags: 
         - posts

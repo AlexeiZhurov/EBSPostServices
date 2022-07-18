@@ -29,7 +29,7 @@ class SearchPostQuerie
                     $query->where('rating', '<=', $value);
                     break;
                 case 'user_id':
-                    $query->where('user_id', '<=', $value);
+                    $query->where('user_id', '=', $value);
                     break;
                 case 'tags_like':
                     $query->where('tags', 'like', "%{$value}%");
@@ -82,7 +82,7 @@ class SearchPostQuerie
         $pagination = (new PageBuilderFactory())->fromQuery($query->getQuery())->build()->pagination;
         //Всключение голосов пользователя 
         if ($params->isInclude(self::INCLUDE_VOICES) == true) {
-            $query->with('voice');
+            $query->with('voices');
         }
         $posts = $query->get();
         //Возврощение объекта с постами и пагинации
