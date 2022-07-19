@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/CreatePostRequest'
+                $ref: './posts/posts.yaml#/PostResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -91,7 +91,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/PatchPostRequest'
+                $ref: './posts/posts.yaml#/PostResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -274,8 +274,6 @@ paths:
             application/json:
               schema:
                 $ref: './posts/posts_voices.yaml#/SearchVoicesResponse'
-        "400":
-          $ref: '#/components/responses/BadRequest'
         "500":
           $ref: '#/components/responses/ServerError' 
 

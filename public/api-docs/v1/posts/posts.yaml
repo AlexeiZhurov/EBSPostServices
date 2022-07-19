@@ -15,7 +15,6 @@ PostFillableProperties:
       description: Название поста
       example: Я очень интересная статья
     preview:
-      # nullable: true
       type: string
       description: Превью поста
       example: "https://es-public.project.ru/domain/attachments/48/2f/image.png"
@@ -52,7 +51,9 @@ PostResponse:
   type: object
   properties:
     data:
-      $ref: '#/Post'
+      type: object
+      properties:
+        - $ref: '#/Post'
     meta:
       type: object
   required:
@@ -75,7 +76,7 @@ PostsResponse:
   properties:
     data:
       type: array
-      items:
+      properties:
         $ref: '#/Post'
     meta:
       type: object
