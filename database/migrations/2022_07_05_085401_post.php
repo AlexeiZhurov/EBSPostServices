@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title',255);
-            $table->string('preview',255)->nullable($value = true);
+            $table->string('title', 255);
+            $table->string('preview', 255)->nullable($value = true);
             $table->longText('tags')->nullable($value = true);
             $table->longText('text');
             $table->integer('user_id');
+            $table->integer('rating')->nullable($value = true);
             $table->timestampsTz();
             $table->softDeletes();
         });
