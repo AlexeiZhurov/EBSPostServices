@@ -44,7 +44,7 @@ test('DELETE|/api/v1/posts/{id}|200', function () {
 });
 
 test('DELETE|/api/v1/posts/{id}|404', function () {
-    deleteJson('/api/v1/posts/100000')
+    deleteJson('/api/v1/posts/11111111111')
         ->assertStatus(404);
 });
 

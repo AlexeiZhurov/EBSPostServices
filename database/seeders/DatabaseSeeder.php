@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use Database\Factories\PostFactory;
+use Database\Factories\VoiceFactory;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        (new PostFactory())->count(100)->create();
+        (new VoiceFactory())->count(100)->create();
+
     }
 }

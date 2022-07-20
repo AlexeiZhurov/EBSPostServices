@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('tags')->nullable($value = true);
             $table->longText('text');
             $table->integer('user_id');
-            $table->integer('rating')->nullable($value = true);
+            $table->integer('rating')->default(0);
             $table->timestampsTz();
             $table->softDeletes();
         });
