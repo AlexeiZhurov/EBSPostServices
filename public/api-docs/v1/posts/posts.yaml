@@ -51,9 +51,7 @@ PostResponse:
   type: object
   properties:
     data:
-      type: object
-      properties:
-        - $ref: '#/Post'
+      $ref: '#/Post'
     meta:
       type: object
   required:
@@ -76,7 +74,7 @@ PostsResponse:
   properties:
     data:
       type: array
-      properties:
+      items:
         $ref: '#/Post'
     meta:
       type: object

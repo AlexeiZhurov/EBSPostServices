@@ -18,6 +18,10 @@ services:
           - app
       ports:
           - 80:80
+      networks:
+        bridge1:
+          aliases:
+          - postservice
  
   postgres:
     image: postgres:10.1
@@ -73,4 +77,7 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
       - KAFKA_CLUSTERS_0_READONLY=false
- 
+networks:
+  bridge1:
+    external:
+      name: app_bridge

@@ -149,7 +149,7 @@ test('RBC|PATCH|/api/v1/posts/{id}/voices/{voiceId}', function () {
             ->etc()
     );
 });
-test('RBC|POST|/api/v1/posts/voices:search', function () {
+test('RBCgiy|POST|/api/v1/posts/voices:search', function () {
     $postId = PostFactory::new()->create()->id;
     VoiceFactory::new()->state(['post_id' => $postId])->count(10)->create();
     $testData = ['filter' => ['post_id' => $postId]];
