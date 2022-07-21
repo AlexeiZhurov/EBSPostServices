@@ -19,33 +19,33 @@ use App\Domain\Posts\Action\UpdateTotalRatingAction;
 
 class VoicesController
 {
-    public function index(GetPostVoicesQuerie $query, int $id)
+    public function index(GetPostVoicesQuerie $query, int $postId)
     {
-        $voices = $query->get($id);
+        $voices = $query->get($postId);
         return VoicesResource::collection($voices);
     }
 
-    public function store(CreatePostVoiceRequest $request, CreatedPostVoicesAction $action, int $id): VoicesResource
+    public function store(CreatePostVoiceRequest $request, CreatedPostVoicesAction $action, int $postId): VoicesResource
     {
-        $voices = $action->execute($id, $request->all());
-        return new VoicesResource($voices);
+        $voice = $action->execute($postId, $request->all());
+        return new VoicesResource($voice);
     }
 
-    public function destroyAll(DeletedAllVoicesPostAction $action, int $id): EmptyResource
+    public function destroyAll(DeletedAllVoicesPostAction $action, int $postId): EmptyResource
     {
-        $action->execute($id);
+        $action->execute($postId);
         return new EmptyResource();
     }
 
-    public function destroy(DeletedVoicePostAction $action, int $id, int $voiceId): EmptyResource
+    public function destroy(DeletedVoicePostAction $action, int $postId, int $voiceId): EmptyResource
     {
-        $action->execute($id, $voiceId);
+        $action->execute($postId, $voiceId);
         return new EmptyResource();
     }
 
-    public function update(PatchVoicePostAction $action, PatchPostVoicesRequest $request, int $id, int $voiceId): VoicesResource
+    public function update(PatchVoicePostAction $action, PatchPostVoicesRequest $request, int $postId, int $voiceId): VoicesResource
     {
-        $voice = $action->execute($id, $voiceId, $request->all());
+        $voice = $action->execute($postId, $voiceId, $request->all());
         return new VoicesResource($voice);
     }
 

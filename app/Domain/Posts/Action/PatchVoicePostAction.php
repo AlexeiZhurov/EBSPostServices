@@ -10,7 +10,7 @@ class PatchVoicePostAction
     //Патчит голос поста в зависимости от переданых параметров
     public function execute(int $postId, int $voiceId, array $data): Voice
     {
-        $voice = Voice::where('post_id', $postId)->where('id', $voiceId)->first();
+        $voice = Voice::findOrFail($voiceId)->first();
         if ($data['voices']) {
             $voice->voices = $data['voices'];
         }

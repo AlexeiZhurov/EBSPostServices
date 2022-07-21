@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        (new PostFactory())->count(100)->create();
-        (new VoiceFactory())->count(100)->create();
+        PostFactory::new()->count(100)->create();
+        VoiceFactory::new()->count(100)->create();
 
     }
 }
