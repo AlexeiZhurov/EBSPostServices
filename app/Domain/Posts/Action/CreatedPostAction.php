@@ -8,7 +8,7 @@ class CreatedPostAction
 {
 
     //Создаете пост из переданых параметров
-    public function execute($data): Post
+    public function execute(array $data): Post
     {
         $post = new Post();
         $post->title = $data['title'];

@@ -8,7 +8,7 @@ use App\Http\ApiV1\Resources\VoicesResource;
 class PostAndVoicesResource extends BaseJsonResource
 {
 
-    public function toArray($request): array
+    public function toArray($data): array
     {
         return [
             'id' => $this->id,
@@ -19,7 +19,7 @@ class PostAndVoicesResource extends BaseJsonResource
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,
             'rating' => $this->rating,
-            'voices' => VoicesResource::collection($this->whenLoaded('voice'))
+            'voices' => VoicesResource::collection($this->whenLoaded('voices'))
         ];
     }
 }

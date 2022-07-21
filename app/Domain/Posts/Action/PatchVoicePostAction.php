@@ -8,14 +8,14 @@ use App\Domain\Posts\Action\UpdateTotalRatingAction;
 class PatchVoicePostAction
 {
     //Патчит голос поста в зависимости от переданых параметров
-    public function execute($post_id, $voice_id, $data): Voice
+    public function execute(int $postId, int $voiceId, array $data): Voice
     {
-        $voice = Voice::where('post_id', $post_id)->where('id', $voice_id);
+        $voice = Voice::where('post_id', $postId)->where('id', $voiceId);
         if ($data['voice']) {
             $voice->voice = $data['voice'];
-            (new UpdateTotalRatingAction())->execute($post_id); //Вызов экшена который обновить суммарный рейтинг поста
         }
         $voice->save();
+        (new UpdateTotalRatingAction())->execute($postId); //Вызов экшена который обновить суммарный рейтинг поста
         return $voice;
     }
 }

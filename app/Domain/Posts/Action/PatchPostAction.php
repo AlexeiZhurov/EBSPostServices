@@ -7,7 +7,7 @@ use App\Domain\Posts\Models\Post;
 class PatchPostAction
 {
     //Патчит поля поста в зависсимости от переданых данных
-    public function execute($id, $data): Post
+    public function execute(int $id, array $data): Post
     {
         $post = Post::find($id);
         if (isset($data['title'])) {
