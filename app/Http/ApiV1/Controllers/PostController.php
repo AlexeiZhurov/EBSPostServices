@@ -19,21 +19,21 @@ use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostController
 {
-    public function index(): AnonymousResourceCollection
+    public function index(AllPostQuerie $query): AnonymousResourceCollection
     {
-        $page = (new AllPostQuerie())->get();
+        $page = $query->get();
         return PostResource::collectPage($page);
     }
 
     public function store(CreatePostsRequest $request, CreatedPostAction $action): PostResource
     {
-        $post = $action->execute($request->collect());
+        $post = $action->execute($request->all());
         return new PostResource($post);
     }
 
-    public function show(SearchPostsRequest $request, int $id): PostAndVoicesResource
+    public function show(GetPostQuerie $query,SearchPostsRequest $request, int $id): PostAndVoicesResource
     {
-        $post = (new GetPostQuerie())->get($request, $id);
+        $post = $query->get($request, $id);
         return new PostAndVoicesResource($post);
     }
 
@@ -43,13 +43,13 @@ class PostController
         return new EmptyResource();
     }
 
-    public function update(PatchPostRequest $request, int $id): PostResource
+    public function update(PatchPostAction $action,PatchPostRequest $request, int $id): PostResource
     {
-        $post = (new PatchPostAction())->execute($id, $request->collect());
+        $post = $action->execute($id, $request->all());
         return new PostResource($post);
     }
 
-    public function search(SearchPostsRequest $request, SearchPostQuerie $query): SearchPagePostResource
+    public function search(SearchPostsRequest $request, SearchPostQuerie $query)
     {
         $posts = $query->find($request);
         return new SearchPagePostResource($posts);

@@ -21,7 +21,7 @@ VoiceFillableProperties:
     created_at:
       type: string 
       format: date-time
-      example: 2020-01-01T15:47:21.000000Z
+      example: '2020-01-01T15:47:21.000000Z'
 #Обезательные свойства при запросе
 VoiceRequiredRequestProperties:
   type: object
@@ -69,11 +69,6 @@ PatchVoiceRequest:
   allOf:
     - $ref: '#/VoiceFillableProperties'
     - $ref: '#/VoiceRequiredRequestProperties'
-#Описнаие итоговой оценки
-VoicesCount:
-  type: integer
-  example: 76
-
 #Описание фильтров для поиска
 SearchVoicesFilter:
   type: object
@@ -83,18 +78,11 @@ SearchVoicesFilter:
       example: 10
     post_id:
       type: integer
-#Описание сортировки
-RequestVoicesSort:
-  type: array
-  items:
-    type: string
-    example: "desc or asc"
+      example: 1
 #Описание запроса на поиск
 SearchVoicesRequest:
   type: object
   properties: 
-    sort:
-      $ref: '#/RequestVoicesSort'
     filter: 
       $ref: '#/SearchVoicesFilter'
     pagination:
