@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use Database\Factories\PostFactory;
 use App\Domain\Posts\Models\Voice;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +23,7 @@ class VoiceFactory extends Factory
     {
         return [
             "voices" => $this->faker->randomElement([-1, 1]),
-            'post_id' => $this->faker->numberBetween(1, 99),
+            'post_id' => PostFactory::new(),
             'user_id' => $this->faker->numberBetween(1, 99)
         ];
     }

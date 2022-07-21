@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('voices', function (Blueprint $table) {
             $table->id();
             $table->integer('voices');
-            $table->foreignIdFor(Post::class);
+            $table->foreignIdFor(Post::class);//
             $table->integer('user_id');
             $table->timestampsTz();
             $table->softDeletes();
