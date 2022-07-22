@@ -82,7 +82,7 @@ class SearchPostQuerie
         $pagination = (new PageBuilderFactory())->fromQuery($query->getQuery())->build()->pagination;
         //Всключение голосов пользователя 
         if ($params->isInclude(self::INCLUDE_VOICES) == true) {
-            $query->with('voice');
+            $query->with('voices');
         }
         $posts = $query->get();
         //Возврощение объекта с постами и пагинации
