@@ -16,8 +16,8 @@ class SearchPostsRequest extends BaseFormRequest implements SearchPostParams
     {
         return [
             'filter' => ['array'],
-            'filter.reating_gte'    => ['integer', 'min:0'],
-            'filter.reating_lte'    => ['integer', 'min:0'],
+            'filter.reating_gte'    => ['integer'],
+            'filter.reating_lte'    => ['integer'],
             'filter.title_like'     => ['string'],
             'filter.text_like'      => ['string'],
             'filter.tags_like'      => ['string'],
@@ -44,6 +44,6 @@ class SearchPostsRequest extends BaseFormRequest implements SearchPostParams
 
     public function isInclude(string $include): bool
     {
-        return in_array($include, $this->get('include', ['default']));
+        return in_array($include, $this->get('include', []));
     }
 }
