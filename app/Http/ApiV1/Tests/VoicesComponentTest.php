@@ -8,15 +8,14 @@ use function Pest\Laravel\getJson;
 use function Pest\Laravel\patchJson;
 use function Pest\Laravel\postJson;
 use Illuminate\Testing\Fluent\AssertableJson;
+use App\Domain\Posts\Models\Voice;
 
 uses(ApiV1ComponentTestCase::class);
 uses()->group('component');
 
 test('GET|/api/v1/posts/{id}/voices|200', function () {
     $postId = PostFactory::new()->create()->id;
-    VoiceFactory::new()->state([
-        'post_id' => $postId,
-    ])->count(10)->create();
+    VoiceFactory::new()->state(['post_id' => $postId,])->count(10)->create();
     getJson("/api/v1/posts/{$postId}/voices")->assertStatus(200);
 });
 
@@ -28,7 +27,9 @@ test('GET|/api/v1/posts/{id}/voices|404', function () {
 test('POST|/api/v1/posts/{id}/voices|200', function () {
     $postId = PostFactory::new()->create()->id;
     $testData = VoiceFactory::new()->definition();
-    postJson("/api/v1/posts/{$postId}/voices", $testData)->assertStatus(200);
+    $testResponse = postJson("/api/v1/posts/{$postId}/voices", $testData)->assertStatus(200);
+    //Проверка сохранения поста в БД
+    Voice::findOrFail($testResponse['data']['id']);
 });
 
 test('POST|/api/v1/posts/{id}/voices|400', function () {
@@ -38,10 +39,12 @@ test('POST|/api/v1/posts/{id}/voices|400', function () {
 
 test('DELETE|/api/v1/posts/{id}/voices|200', function () {
     $postId = PostFactory::new()->create()->id;
-    VoiceFactory::new()->state([
-        'post_id' => $postId,
-    ])->count(10)->create();
+    VoiceFactory::new()->state(['post_id' => $postId])->count(10)->create();
     deleteJson("/api/v1/posts/{$postId}/voices")->assertStatus(200);
+    //Проверка что голоса были удаленны 
+    $trashVoices = Voice::withTrashed()->where('post_id', $postId);
+    $this->assertCount(10, $trashVoices->get()->all());
+    $trashVoices->firstOrFail();
 });
 
 test('DELETE|/api/v1/posts/{id}/voices|404', function () {
@@ -53,6 +56,8 @@ test('DELETE|/api/v1/posts/{id}/voices/{voiceId}|200', function () {
     $postId = PostFactory::new()->create()->id;
     $voiceId = VoiceFactory::new()->state(['post_id' => $postId])->create()->id;
     deleteJson("/api/v1/posts/{$postId}/voices/{$voiceId}")->assertStatus(200);
+    //Проверка того что голос был удален 
+    Voice::withTrashed()->findOrFail($voiceId);
 });
 
 test('DELETE|/api/v1/posts/{id}/voices/{voiceId}|404', function () {
@@ -64,7 +69,11 @@ test('PATCH|/api/v1/posts/{id}/voices/{voiceId}|200', function () {
     $voiceFactory = new VoiceFactory();
     $voiceId = $voiceFactory->state(['post_id' => $postId])->create()->id;
     $testData = $voiceFactory->definition();
-    patchJson("/api/v1/posts/{$postId}/voices/{$voiceId}", $testData)->assertStatus(200);
+    $testResponse = patchJson("/api/v1/posts/{$postId}/voices/{$voiceId}", $testData)->assertStatus(200);
+    //Проверка то что голос был изменен
+    $voice = Voice::findOrFail($voiceId)->first();
+    expect($voice->id)->toBe($testResponse['data']['id']);
+    expect($voice->voices)->toBe($testResponse['data']['voices']);
 });
 
 test('PATCH|/api/v1/posts/{id}/voices/{voiceId}|400', function () {
@@ -149,7 +158,7 @@ test('RBC|PATCH|/api/v1/posts/{id}/voices/{voiceId}', function () {
             ->etc()
     );
 });
-test('RBCgiy|POST|/api/v1/posts/voices:search', function () {
+test('RBC|POST|/api/v1/posts/voices:search', function () {
     $postId = PostFactory::new()->create()->id;
     VoiceFactory::new()->state(['post_id' => $postId])->count(10)->create();
     $testData = ['filter' => ['post_id' => $postId]];
@@ -158,8 +167,8 @@ test('RBCgiy|POST|/api/v1/posts/voices:search', function () {
         fn (AssertableJson $json) => $json
             ->has('data')
             ->has('meta')
-            ->where('meta.pagination.total',10)
-            ->where('data.0.post_id',$postId)
+            ->where('meta.pagination.total', 10)
+            ->where('data.0.post_id', $postId)
             ->etc()
     );
 });

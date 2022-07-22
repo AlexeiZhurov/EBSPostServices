@@ -7,13 +7,17 @@ use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\getJson;
 use function Pest\Laravel\patchJson;
 use function Pest\Laravel\postJson;
+use App\Domain\Posts\Models\Post;
 
 uses(ApiV1ComponentTestCase::class);
 uses()->group('component');
 
 test('POST|/api/v1/posts|200', function () {
     $testData = PostFactory::new()->definition();
-    postJson('/api/v1/posts', $testData)->assertStatus(200);
+    $testResponse = postJson('/api/v1/posts', $testData)->assertStatus(200);
+    //Проверка сохранения поста в БД
+    $postId = $testResponse['data']['id'];
+    Post::findOrFail($postId);
 });
 
 test('POST|/api/v1/posts|400', function () {
@@ -39,8 +43,9 @@ test('POST|/api/v1/posts:all|200', function () {
 
 test('DELETE|/api/v1/posts/{id}|200', function () {
     $id = PostFactory::new()->create()->id;
-    deleteJson('/api/v1/posts/' . $id)
-        ->assertStatus(200);
+    deleteJson('/api/v1/posts/' . $id)->assertStatus(200);
+    //Проверка того что пост был удален
+    Post::withTrashed()->findOrFail($id);
 });
 
 test('DELETE|/api/v1/posts/{id}|404', function () {
@@ -52,7 +57,15 @@ test('PATCH|/api/v1/posts/{id}|200', function () {
     $factory = new PostFactory();
     $id = $factory->create()->id;
     $testData = $factory->definition();
-    patchJson('/api/v1/posts/' . $id, $testData)->assertStatus(200);
+    $testResponse = patchJson('/api/v1/posts/' . $id, $testData)->assertStatus(200);
+    //Проверка того что пропатченый посты был сохранен и изменен
+    $post = Post::findOrFail($id)->first();
+    expect($post->id)->toBe($testResponse['data']['id']);
+    expect($post->title)->toBe($testResponse['data']['title']);
+    expect($post->preview)->toBe($testResponse['data']['preview']);
+    expect($post->tags)->toBe($testResponse['data']['tags']);
+    expect($post->text)->toBe($testResponse['data']['text']);
+    expect($post->user_id)->toBe($testResponse['data']['user_id']);
 });
 
 test('PATCH /api/v1/posts/{id} 400', function () {
@@ -63,7 +76,15 @@ test('PATCH /api/v1/posts/{id} 400', function () {
 });
 
 test('POST|/api/v1/posts:search|200', function () {
-    postJson('/api/v1/posts:search')->assertStatus(200);
+    $testData = ['filter' =>['user_id' => 1]];
+    PostFactory::new()->state(['user_id' => 1])->create();
+    $testResponse = postJson('/api/v1/posts:search',$testData)->assertStatus(200);
+    $testResponse->assertJson(
+        fn (AssertableJson $json) => $json
+            ->has('data')
+            ->has('meta')
+            ->where('data.0.user_id',1)
+    );
 });
 
 
