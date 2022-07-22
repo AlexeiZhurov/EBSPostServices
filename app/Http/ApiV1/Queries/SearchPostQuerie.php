@@ -29,7 +29,7 @@ class SearchPostQuerie
                     $query->where('rating', '<=', $value);
                     break;
                 case 'user_id':
-                    $query->where('user_id', '=', $value);
+                    $query->where('user_id', '=', $value);//
                     break;
                 case 'tags':
                     $query->where('tags', '=', "$value");
