@@ -11,7 +11,7 @@ class DeletedAllVoicesPostAction
     public function execute(int $id): void
     {
         Voice::where('post_id', $id)->delete();
-        (new UpdateTotalRatingAction())->execute($id); //Вызов экшена который обновить суммарный рейтинг поста
+       (new UpdateTotalRatingAction)->execute($id); //Вызов экшена который обновить суммарный рейтинг поста
 
     }
 }

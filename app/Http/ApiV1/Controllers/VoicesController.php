@@ -15,7 +15,7 @@ use App\Http\ApiV1\Support\Resources\EmptyResource;
 use App\Http\ApiV1\Queries\GetPostVoicesQuerie;
 use App\Http\ApiV1\Queries\SearchVoiceQuerie;
 use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-
+use App\Domain\Posts\Action\UpdateTotalRatingAction;
 class VoicesController
 {
     public function index(int $id): AnonymousResourceCollection
@@ -24,9 +24,9 @@ class VoicesController
         return VoicesResource::collection($voices);
     }
 
-    public function store(CreatePostVoiceRequest $request, CreatedPostVoicesAction $action, int $id,): VoicesResource
+    public function store(CreatePostVoiceRequest $request, CreatedPostVoicesAction $action, int $id): VoicesResource
     {
-        $voices = $action->execute($id, $request->all());
+        $voices = $action->execute($id, $request->all(),new \App\Domain\Posts\Action\UpdateTotalRatingAction);
         return new VoicesResource($voices);
     }
 
@@ -36,15 +36,15 @@ class VoicesController
         return new EmptyResource();
     }
 
-    public function destroy(DeletedVoicePostAction $action, int $id, int $voice_id): EmptyResource
+    public function destroy(DeletedVoicePostAction $action, int $id, int $voiceId): EmptyResource
     {
-        $action->execute($id, $voice_id);
+        $action->execute($id, $voiceId);
         return new EmptyResource();
     }
 
-    public function update(PatchPostVoicesRequest $request, int $id, int $voice_id): VoicesResource
+    public function update(PatchVoicePostAction $action,PatchPostVoicesRequest $request, int $id, int $voiceId): VoicesResource
     {
-        $voice = (new PatchVoicePostAction())->execute($id, $voice_id, $request->all());
+        $voice = $action->execute($id, $voiceId, $request->all());
         return new VoicesResource($voice);
     }
 

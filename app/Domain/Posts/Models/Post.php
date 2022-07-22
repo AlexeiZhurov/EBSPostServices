@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $created_at - дата создания 
  * @property Carbon $updated_at - дата создания
  * @property Carbon $deleted_at - дата удаления
+ * @property-read array voices - массив с оценками пользователей
  */
 class Post extends Model
 {
