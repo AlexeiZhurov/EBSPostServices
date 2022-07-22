@@ -19,9 +19,7 @@ services:
       ports:
           - 80:80
       networks:
-        bridge1:
-          aliases:
-          - postservice
+        - app_bridge
  
   postgres:
     image: postgres:10.1
@@ -78,6 +76,5 @@ services:
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
       - KAFKA_CLUSTERS_0_READONLY=false
 networks:
-  bridge1:
-    external:
-      name: app_bridge
+  app_bridge:
+    external: true
