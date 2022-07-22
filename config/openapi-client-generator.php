@@ -20,7 +20,7 @@ return [
     /*
      * Git repository name template
      */
-    'git_repo_template' => 'EBSPostServices',
+    'git_repo_template' => 'EBSPostService',
 
     /*
      * Git host
@@ -57,20 +57,20 @@ return [
         /*
          * Package name for composer, use standard pattern namespace/package
          */
-        'composer_name' => 'ensi/postservices',
+        'composer_name' => 'ensi/postserviceclient',
 
         /*
          * Specific generator params from https://openapi-generator.tech/docs/generators/php/
          */
         'params' => [
             'apiPackage' => 'Api',
-            'invokerPackage' => 'Ensi\EBSPost',
+            'invokerPackage' => 'Ensi\EBSPostClient',
             'modelPackage' => 'Dto',
             'packageName' => 'EBSPost',
         ],
 
 
-        'laravel_package_config_key' => 'openapi-clients.ebs_post_service',
+        'laravel_package_config_key' => 'openapi-clients.ebs_post_service_client',
 
         'files_to_ignore_during_cleanup' => ['.git', '.gitignore'],
 

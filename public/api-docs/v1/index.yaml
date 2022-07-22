@@ -36,9 +36,9 @@ paths:
     post:
       tags: 
         - posts
-      operationId: createPosts
+      operationId: createPost
       x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@store'
-      x-lg-route-name: 'createPosts'
+      x-lg-route-name: 'createPost'
       summary: Создание поста
       description: Данный метод позволит создать пост
       responses:
@@ -58,7 +58,7 @@ paths:
         - posts
       operationId: getPost
       x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@show'
-      x-lg-route-name: 'getPosts'
+      x-lg-route-name: 'getPost'
       summary: Получение одного поста
       description: Данный метод позволить получить один пост по его id
       parameters:
@@ -123,7 +123,7 @@ paths:
         - posts
       operationId: searchPosts
       x-lg-handler: 'App\Http\ApiV1\Controllers\PostController@search'
-      x-lg-route-name: 'searchPost'
+      x-lg-route-name: 'searchPosts'
       summary: Поиск постов
       description: Метод позволяет проводит поиск по постам
       requestBody:
@@ -149,7 +149,7 @@ paths:
         - posts
       operationId: getPostVoices
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@index'
-      x-lg-route-name: 'getPostsVoices'
+      x-lg-route-name: 'getPostVoices'
       summary: Получение получение оценок поста
       description: Метод позволяет получить абсолютно все оценки поста
       parameters:
@@ -170,7 +170,7 @@ paths:
         - posts
       operationId: createPostVoice
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@store'
-      x-lg-route-name: 'createPostsVoices'
+      x-lg-route-name: 'createPostVoice'
       summary: Создание голоса поста
       description: Данный метод позволит проголосовать за пост
       parameters:
@@ -191,7 +191,7 @@ paths:
         - posts
       operationId: deletePostVoices
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@destroyAll'
-      x-lg-route-name: 'deletePostsVoices'
+      x-lg-route-name: 'deletePostVoice'
       summary: Удаление оценок поста
       description: Метод позволяет удалить абсолютно все оценки поста
       parameters:
@@ -211,9 +211,9 @@ paths:
     patch:
       tags: 
         - posts
-      operationId: patchPostVoices
+      operationId: patchPostVoice
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@update'
-      x-lg-route-name: 'patchPost'
+      x-lg-route-name: 'patchPostVoice'
       summary: Редактирование голоса
       description: Данный метод позволит отредактировать голос
       parameters:
@@ -233,7 +233,7 @@ paths:
     delete:
       tags: 
         - posts
-      operationId: deleteOneVoicesPost
+      operationId: deleteOneVoicePost
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@destroy'
       x-lg-route-name: 'deletePost'
       summary: Удаление одного поста
