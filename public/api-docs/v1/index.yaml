@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/CreatePostRequest'
+                $ref: './posts/posts.yaml#/PostResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -91,7 +91,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts.yaml#/PatchPostRequest'
+                $ref: './posts/posts.yaml#/PostResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -160,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts_voices.yaml#/VoiceResponse'
+                $ref: './posts/posts_voices.yaml#/VoicesResponse'
         "404":
           $ref: '#/components/responses/NotFound'
         "500":
@@ -181,7 +181,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './posts/posts_voices.yaml#/CreateVoiceRequest'
+                $ref: './posts/posts_voices.yaml#/VoiceResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -207,7 +207,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         "500":
           $ref: '#/components/responses/ServerError'
-  /posts/{id}/voices{voice-id}:
+  /posts/{id}/voices/{voiceId}:
     patch:
       tags: 
         - posts
@@ -218,14 +218,14 @@ paths:
       description: Данный метод позволит отредактировать голос
       parameters:
         - $ref: '#/components/parameters/PathId'
-        - $ref: '#/components/parameters/VoicesId'
+        - $ref: '#/components/parameters/VoiceId'
       responses:
         "200":
           description: Успешный ответ
           content:
             application/json:
               schema:
-                $ref: './posts/posts_voices.yaml#/PatchVoiceRequest'
+                $ref: './posts/posts_voices.yaml#/VoiceResponse'
         "400":
           $ref: '#/components/responses/BadRequest'
         "500":
@@ -235,12 +235,12 @@ paths:
         - posts
       operationId: deleteOneVoicePost
       x-lg-handler: 'App\Http\ApiV1\Controllers\VoicesController@destroy'
-      x-lg-route-name: 'deletePost'
-      summary: Удаление одного поста
+      x-lg-route-name: 'deletePostVoice'
+      summary: Удаление одного голоса 
       description: Данный метод позволить удалить один голос по его id
       parameters:
           - $ref: '#/components/parameters/PathId'
-          - $ref: '#/components/parameters/VoicesId'
+          - $ref: '#/components/parameters/VoiceId'
       responses:
         "200":
           description: Успешный ответ
@@ -285,8 +285,8 @@ components:
       $ref: './common_parameters.yaml#/QueryInclude'
     PathId:
       $ref: './common_parameters.yaml#/PathId'
-    VoicesId:
-      $ref: './common_parameters.yaml#/VoicesId'
+    VoiceId:
+      $ref: './common_parameters.yaml#/VoiceId'
   schemas:
     EmptyDataResponse:
       type: object

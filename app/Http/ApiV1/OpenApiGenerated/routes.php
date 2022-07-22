@@ -13,9 +13,9 @@ Route::get('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'sh
 Route::delete('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'destroy'])->name('deletePost');
 Route::patch('posts/{id}', [\App\Http\ApiV1\Controllers\PostController::class, 'update'])->name('patchPost');
 Route::post('posts:search', [\App\Http\ApiV1\Controllers\PostController::class, 'search'])->name('searchPost');
-Route::get('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'index'])->name('getPostsVoices');
-Route::post('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'store'])->name('createPostsVoices');
+Route::get('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'index'])->name('getPostVoices');
+Route::post('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'store'])->name('createPostVoices');
 Route::delete('posts/{id}/voices', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroyAll'])->name('deletePostsVoices');
-Route::delete('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroy'])->name('deletePost');
-Route::patch('posts/{id}/voices{voice-id}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'update'])->name('patchPost');
+Route::delete('posts/{id}/voices/{voiceId}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'destroy'])->name('deletePostVoice');
+Route::patch('posts/{id}/voices/{voiceId}', [\App\Http\ApiV1\Controllers\VoicesController::class, 'update'])->name('patchPostVoice');
 Route::post('posts/voices:search', [\App\Http\ApiV1\Controllers\VoicesController::class, 'search'])->name('searchPostVoices');

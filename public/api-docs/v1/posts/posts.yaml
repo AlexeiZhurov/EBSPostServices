@@ -15,7 +15,6 @@ PostFillableProperties:
       description: Название поста
       example: Я очень интересная статья
     preview:
-      # nullable: true
       type: string
       description: Превью поста
       example: "https://es-public.project.ru/domain/attachments/48/2f/image.png"

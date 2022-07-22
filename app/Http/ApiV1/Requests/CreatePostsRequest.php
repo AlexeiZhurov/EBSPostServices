@@ -14,7 +14,7 @@ class CreatePostsRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'title'     => ['required', 'max:255'],
+            'title'     => ['required', 'max:255','min:1','string'],
             'preview'   => ['required', 'url'],
             'text'      => ['required'],
             'tags'      => ['nullable'],

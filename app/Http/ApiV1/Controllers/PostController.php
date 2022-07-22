@@ -31,21 +31,21 @@ class PostController
         return new PostResource($post);
     }
 
-    public function show(GetPostQuerie $query,SearchPostsRequest $request, int $id): PostAndVoicesResource
+    public function show(GetPostQuerie $query,SearchPostsRequest $request, int $postId): PostAndVoicesResource
     {
-        $post = $query->get($request, $id);
+        $post = $query->get($request, $postId);
         return new PostAndVoicesResource($post);
     }
 
-    public function destroy(DeletedPostAction $action, int $id): EmptyResource
+    public function destroy(DeletedPostAction $action, int $postId): EmptyResource
     {
-        $action->execute($id);
+        $action->execute($postId);
         return new EmptyResource();
     }
 
-    public function update(PatchPostAction $action,PatchPostRequest $request, int $id): PostResource
+    public function update(PatchPostAction $action,PatchPostRequest $request, int $postId): PostResource
     {
-        $post = $action->execute($id, $request->all());
+        $post = $action->execute($postId, $request->all());
         return new PostResource($post);
     }
 
