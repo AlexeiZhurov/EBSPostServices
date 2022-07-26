@@ -18,7 +18,7 @@ class SearchPostQuerie
 
     public function find(SearchPostParams $params): SearchPostPage
     {
-        $query = Post::query()->where('id', '>', 0);
+        $query = Post::query();
         //Перебор фильтров переданых в параметрах
         foreach ($params->getFilter() as $filter => $value) {
             switch ($filter) {
@@ -29,10 +29,10 @@ class SearchPostQuerie
                     $query->where('rating', '<=', $value);
                     break;
                 case 'user_id':
-                    $query->where('user_id', '=', $value);
+                    $query->where('user_id', '=', $value);//
                     break;
-                case 'tags_like':
-                    $query->where('tags', 'like', "%{$value}%");
+                case 'tags':
+                    $query->where('tags', '=', "$value");
                     break;
                 case 'title_like':
                     $query->where('title', 'like', "%{$value}%");
