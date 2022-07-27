@@ -8,9 +8,9 @@ PathId:
     minimum: 1
   description: Числовой id
   example: 1
-VoicesId:
+VoiceId:
   in: path
-  name: voice-id
+  name: voiceId
   required: true
   schema:
     type: integer

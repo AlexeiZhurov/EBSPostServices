@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id - id поста 
  * @property string $title - название поста 
  * @property string|null $preview - ссылка на обложку
+ * @property string $text - текст поста
  * @property string $tags - теги поста
  * @property int $user_id - id полозователя который создал пост
  * @property int $rating - сумарынй рейтинг постам

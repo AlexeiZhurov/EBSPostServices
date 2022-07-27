@@ -20,8 +20,8 @@ class SearchPostsRequest extends BaseFormRequest implements SearchPostParams
             'filter.reating_lte'    => ['integer'],
             'filter.title_like'     => ['string'],
             'filter.text_like'      => ['string'],
-            'filter.tags_like'      => ['string'],
-            'filter.user_id'        => ['integer', 'min:0'],
+            'filter.tags'           => ['string'],
+            'filter.user_id'        => ['integer', 'min:1'],
 
 
             'include'   =>   ['array'],

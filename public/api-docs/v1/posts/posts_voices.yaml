@@ -10,8 +10,8 @@ VoiceFillableProperties:
   type: object
   properties:
     voices: 
-      type: string
-      example: "1 or -1"
+      type: integer
+      example: 1
     post_id: 
       type: integer
       example: 2
@@ -22,13 +22,17 @@ VoiceFillableProperties:
       type: string 
       format: date-time
       example: '2020-01-01T15:47:21.000000Z'
-#Обезательные свойства при запросе
-VoiceRequiredRequestProperties:
-  type: object
-  required:
-    - id
 # Сборка и компонентов ответа нашего API
 VoiceResponse:
+  type: object
+  properties:
+    data:
+      $ref: '#/Voices'
+    meta:
+      type: object
+  required:
+      - data
+VoicesResponse:
   type: object
   properties:
     data:
@@ -37,6 +41,9 @@ VoiceResponse:
         $ref: '#/Voices'
     meta:
       type: object
+      properties: 
+        pagination: 
+          $ref: '../common_schemas.yaml#/ResponseBodyPagination'
   required:
       - data
 #Обезательные поля ответа API
@@ -44,15 +51,15 @@ VoiceRequiredResponseProperties:
   type: object
   required:
     - id
-    - voices
+    - voices  
     - post_id
     - user_id
     - created_at
-VoicesRequiredRequestProperties:
+
+VoiceRequiredRequestProperties:
   type: object
   required:
     - voices
-    - post_id
     - user_id
 #Что собой предстовляет сущность голос
 Voices:

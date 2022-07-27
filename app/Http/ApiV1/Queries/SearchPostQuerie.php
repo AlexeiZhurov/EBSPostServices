@@ -6,8 +6,6 @@ use App\Domain\Posts\Models\Post;
 use App\Http\ApiV1\Requests\SearchPostParams;
 use App\Http\ApiV1\Support\Pagination\PageBuilderFactory;
 use App\Http\ApiV1\Support\Search\SearchPostPage;
-
-
 use InvalidArgumentException;
 
 class SearchPostQuerie
@@ -41,7 +39,7 @@ class SearchPostQuerie
                     $query->where('text', 'like', "%{$value}%");
                     break;
                 default:
-                    throw new InvalidArgumentException("{$filter} фильтр не найден");
+                    throw new InvalidArgumentException("{$value} фильтр не найден");
             }
         }
         //Использование фильтров к запросу из переданого параметра
